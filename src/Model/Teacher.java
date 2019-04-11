@@ -78,10 +78,10 @@ public abstract class Teacher {
         Status=new HashMap<>();
     }
     
-<<<<<<< HEAD
     public void incNoOfCourses(){
         noOfCourses++;
     }
+    
     public boolean addTimePair(String Day ,int startTime,int endTime){
         
         if(checkAvailable(Day,startTime,endTime)){
