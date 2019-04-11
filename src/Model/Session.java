@@ -9,10 +9,19 @@ package Model;
  *
  * @author egypt
  */
-public class Session {
- protected int StartTime;
+abstract class Session {
+    
+    protected int StartTime;
     protected int Duration;
     protected String day;
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getDay() {
+        return day;
+    }
     
     public void setStartTime(int StartTime) {
         this.StartTime = StartTime;
@@ -32,5 +41,5 @@ public class Session {
 
     public int getDuration() {
         return Duration;
-    }   
+    }
 }
