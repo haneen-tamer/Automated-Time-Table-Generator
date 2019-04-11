@@ -10,20 +10,33 @@ package Model;
  * @author Aya
  */
 import java.util.HashMap;
-
+import java.util.ArrayList;
  class TimePair{
     
    int Start_Time;
+
+    public int getStart_Time() {
+        return Start_Time;
+    }
+
+    public int getEnd_Time() {
+        return End_Time;
+    }
    int End_Time;
+   
+    TimePair(int startTime,int endTime){
+       this.Start_Time=startTime;
+       this.End_Time=endTime;
+    }
 }
-public class Teacher {
+public abstract class Teacher {
     protected String ID;
     protected String Name;
     protected String E_Mail;
     protected String Phone;
     protected int noOfCourses;
 
-    protected HashMap<String,TimePair> x;
+    protected HashMap<String,ArrayList <TimePair>> Status;
     
     public void setID(String ID) {
         this.ID = ID;
@@ -62,7 +75,40 @@ public class Teacher {
     
     
     Teacher(){
-        x=new HashMap<String,TimePair>();
+        Status=new HashMap<>();
     }
+    
+    public void incNoOfCourses(){
+        noOfCourses++;
+    }
+    public boolean addTimePair(String Day ,int startTime,int endTime){
+        
+        if(checkAvailable(Day,startTime,endTime)){
+            if(!Status.containsKey(Day)){
+                Status.put(Day, new ArrayList<>()); //insert
+            }
+            Status.get(Day).add(new TimePair(startTime, endTime));
+            return true;
+        }else return false;
+    }
+    private boolean checkAvailable(String Day ,int start,int end){
+        if(!Status.containsKey(Day)){
+            return true;
+        }
+        ArrayList<TimePair> arr = Status.get(Day); 
+        for(int i=0; i<arr.size(); i++){
+            TimePair current = arr.get(i);
+            
+            if(start> current.getStart_Time() && start<current.getEnd_Time()){
+                return false;
+            }
+            if(end >current.getStart_Time()&&end<current.getEnd_Time()){
+                return false;
+            }
+            
+        }
+         return true;
+    }
+    
     
 }
