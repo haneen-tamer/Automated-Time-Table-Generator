@@ -11,4 +11,27 @@ package Model;
  */
 public class Teacher {
     
+    protected int StartTime;
+    protected int Duration;
+    protected String day;
+    
+    public void setStartTime(int StartTime) {
+        this.StartTime = StartTime;
+    }
+
+    public int getEndTime() {
+        return StartTime + Duration;
+    }
+
+    public void setDuration(int Duration) {
+        this.Duration = Duration;
+    }
+
+    public int getStartTime() {
+        return StartTime;
+    }
+
+    public int getDuration() {
+        return Duration;
+    }
 }
