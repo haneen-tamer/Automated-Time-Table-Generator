@@ -78,6 +78,10 @@ public abstract class Teacher {
         Status=new HashMap<>();
     }
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb59d673fdffb1a4c327acbd455423757ef5f2b5
     public void incNoOfCourses(){
         noOfCourses++;
     }
@@ -112,7 +116,7 @@ public abstract class Teacher {
     }
     
     
-=======
+
     protected int StartTime;
     protected int Duration;
     protected String day;
@@ -136,5 +140,5 @@ public abstract class Teacher {
     public int getDuration() {
         return Duration;
     }
->>>>>>> 0d1fbdfe3e5259389f283547ed7fe37c3d0337f3
+
 }
