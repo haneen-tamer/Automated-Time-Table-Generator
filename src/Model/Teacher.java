@@ -78,10 +78,7 @@ public abstract class Teacher {
         Status=new HashMap<>();
     }
     
-<<<<<<< HEAD
-=======
 
->>>>>>> eb59d673fdffb1a4c327acbd455423757ef5f2b5
     public void incNoOfCourses(){
         noOfCourses++;
     }
