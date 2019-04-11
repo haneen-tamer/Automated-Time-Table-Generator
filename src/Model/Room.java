@@ -9,6 +9,18 @@ package Model;
  *
  * @author egypt
  */
-public class Room {
+abstract class Room {
+    //unnecessary comment
+    protected String name;
+    protected int capacity;
+
+
+    abstract void setName(String name);
+
+    abstract void setCapacity(int capacity);
+
+    abstract String getName();
+
+    abstract int getCapacity();
     
 }
