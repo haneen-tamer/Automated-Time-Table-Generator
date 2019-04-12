@@ -15,28 +15,26 @@ public class Section extends Session {
     public TA ta;
 
      @Override
-    Room getRoom(Room room) {
-        return room;
-    }
-
-    @Override
-    Teacher getTeacher(Teacher teacher) {
-        return teacher;
-    }
-    
-    public void setTa(TA ta) {
-        this.ta = ta;
-    }
-
-    public TA getTa() {
-        return ta;
-    }
-
-    public Lab getLab() {
+    Room getRoom() {
         return lab;
     }
 
-    public void setLab(Lab lab) {
-        this.lab = lab;
+    @Override
+    Teacher getTeacher() {
+        return ta;
+    }
+    
+    @Override
+    public boolean setTeacher(Teacher ta) {
+        if(!(ta instanceof TA)) return false;
+        this.ta = (TA) ta;
+        return true;
+    }
+
+    @Override
+    public boolean setRoom(Room lab) {
+        if(!(lab instanceof Lab)) return false;
+        this.lab = (Lab) lab;
+        return true;
     }  
 }

@@ -15,27 +15,29 @@ public class Lecture extends Session {
     public Prof professor;
 
     @Override
-    Room getRoom(Room room) {
-        return room;
+    Room getRoom() {
+        return LectureHall;
     }
 
     @Override
-    Teacher getTeacher(Teacher teacher) {
-        return teacher;
-    }
-    
-    public void setProfessor(Prof professor) {
-        this.professor = professor;
-    }
-  
-    public Prof getProfessor() {
+    Teacher getTeacher() {
         return professor;
     }
-    public Class getLectureHall() {
-        return LectureHall;
-    }
     
-    public void setLectureHall(Class LectureHall) {
-        this.LectureHall = LectureHall;
+    @Override
+    public boolean setTeacher(Teacher professor) {
+        if(!(professor instanceof Prof)) return false;
+        this.professor =(Prof) professor;
+        return true;
     }
+
+    @Override
+    public boolean setRoom(Room LectureHall) {
+        if(!(LectureHall instanceof Class)) return false;
+        this.LectureHall =(Class) LectureHall;
+        return true;
+    }  
+    
+    
+    
 }

@@ -15,8 +15,10 @@ abstract class Session {
     protected int Duration;
     protected String day;
 
-    abstract Room getRoom(Room room);
-    abstract Teacher getTeacher(Teacher teacher);
+    abstract Room getRoom();
+    abstract Teacher getTeacher();
+    abstract boolean setTeacher(Teacher t);
+    abstract boolean setRoom(Room r);
 
     public void setDay(String day) {
         this.day = day;
