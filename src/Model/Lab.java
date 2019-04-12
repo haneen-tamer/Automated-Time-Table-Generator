@@ -9,6 +9,22 @@ package Model;
  *
  * @author egypt
  */
-public class Lab {
+public class Lab extends Room {
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+    
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
     
 }
