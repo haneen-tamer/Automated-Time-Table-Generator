@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Courses {
     
-    protected int id;
+    protected String id;
     protected String name;
     protected int NoOfstudents;  
     protected ArrayList<Session> sessions = new ArrayList<Session>();
@@ -22,7 +22,11 @@ public class Courses {
         sessions.add(session);
     }
     
-    public void setId(int id) {
+    public ArrayList<Session> GetSessions(){
+        return new ArrayList<Session>(sessions);
+    }
+    
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -30,7 +34,7 @@ public class Courses {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

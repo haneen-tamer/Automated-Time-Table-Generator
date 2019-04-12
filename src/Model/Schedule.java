@@ -10,26 +10,31 @@ import java.util.*;
  * @author Haneen
  */
 public class Schedule {
-    private HashSet<Day> week;
+    private HashMap<String, Day> week;
     
     public Schedule(String [] days, ArrayList<Room> Rooms, int start, int end){
-        week = new HashSet<>(days.length);
+        week = new HashMap<>(days.length);
         for (String day : days) {
-            week.add(new Day(day, Rooms, start, end));
+            week.put(day, new Day(day, Rooms, start, end));
         }
     }
     
     public int addSession(Session s){
         int state = Day.ROOM_OVERLAP;
         
-        Iterator it = week.iterator();
-        while(it.hasNext()){
-            Day current = (Day) it.next();
+        ArrayList<Day> Days= (ArrayList) week.values();
+        for(Day current: Days){
             state = current.addSession(s);
             if(state == Day.NO_OVERLAP) return state;
         }
         
         return state;
+    }
+    
+    public void insertSessionsAt(ArrayList<Session> sessions){
+        for(Session s: sessions){
+            week.get(s.getDay()).insertSessionAt(s);
+        }
     }
     
 }

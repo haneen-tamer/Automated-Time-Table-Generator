@@ -28,7 +28,7 @@ public class Day {
     public static final String Fri = "Friday";
     
     public static final int START_TIME=8;
-    public static final int END_TIME=8;
+    public static final int END_TIME=20;
     
     public static final int ROOM_OVERLAP=2;
     public static final int TEACHER_OVERLAP=1;
@@ -83,8 +83,8 @@ public class Day {
             Iterator it = room_sch.iterator();
             ArrayList<Integer> startTimes = getSuitableStartTimes(it, s);
             if(startTimes.isEmpty()) return Day.ROOM_OVERLAP;
-            for(int i=0; i<startTimes.size(); i++){
-                int start = startTimes.get(i);
+            for (Integer startTime1 : startTimes) {
+                int start = startTime1;
                 if(s.getTeacher().addTimePair(this.name, start, start+ s.getDuration())){
                     s.setStartTime(start);
                     room_sch.add(s);
