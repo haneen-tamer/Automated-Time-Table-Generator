@@ -11,8 +11,6 @@ package Model;
  */
 public interface Saveable {
     
-    
-    public Saveable getInstance(String line);
     public String getSaveableLine();
     
 }
