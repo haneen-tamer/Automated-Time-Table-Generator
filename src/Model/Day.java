@@ -70,7 +70,7 @@ public class Day {
         while(it.hasNext()){
             Session after = (Session) it.next();
             int gap = after.getStartTime()-before.getEndTime();
-            if(gap>0) possibleTimes.add(gap);
+            if(gap>0 && gap<this.endTime) possibleTimes.add(gap);
             before = after;
         }
         return possibleTimes;
@@ -95,7 +95,7 @@ public class Day {
             if(canFit) return Day.NO_OVERLAP;
             else return Day.TEACHER_OVERLAP;
         }else{
-            s.setStartTime(Day.START_TIME);
+            s.setStartTime(this.startTime);
             if(!s.getTeacher()
                 .addTimePair(this.name, Day.START_TIME, s.getEndTime())) 
                 return Day.TEACHER_OVERLAP;
