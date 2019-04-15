@@ -110,4 +110,19 @@ public class Day {
         room_sch.add(s);
     }
     
+    public int getStartTime(){
+        return this.startTime;
+    }
+    public int getEndTime(){
+        return this.endTime;
+    }
+    public ArrayList<Session> getRoomSchedule(Room r){
+        ArrayList<Session> arr = new ArrayList<>();
+        Iterator it = mapPerDay.get(r).iterator();
+        while(it.hasNext()){
+            arr.add((Session)it.next());
+        }
+        return arr;
+    }
+    
 }

@@ -9,7 +9,7 @@ package Model;
  *
  * @author egypt
  */
-abstract class Session {
+public abstract class Session {
     
     protected int StartTime;
     protected int Duration;

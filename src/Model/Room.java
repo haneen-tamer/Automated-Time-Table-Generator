@@ -9,7 +9,7 @@ package Model;
  *
  * @author egypt
  */
-abstract class Room {
+public abstract class Room {
     //unnecessary comment
     protected String name;
     protected int capacity;
