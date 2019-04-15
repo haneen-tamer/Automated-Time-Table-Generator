@@ -37,4 +37,34 @@ public class Schedule {
         }
     }
     
+    public int getStartTime(){
+        ArrayList<Day> arr= (ArrayList) week.values();
+        for(Day d: arr){
+            return d.getStartTime();
+        }
+        return 0;
+    }
+    
+    public int getEndTime(){
+        ArrayList<Day> arr= (ArrayList) week.values();
+        for(Day d: arr){
+            return d.getEndTime();
+        }
+        return 0;
+    }
+    
+    public String [] getDaysStrings(){
+        return (String []) week.entrySet().toArray();
+    }
+    public ArrayList<Session> getRoomSchedule(Room r){
+        ArrayList<Session> arr = new ArrayList<>();
+        ArrayList<Day> days = (ArrayList) week.values();
+        for(Day d: days){
+            ArrayList<Session> arrSessions =d.getRoomSchedule(r);
+            for(Session s: arrSessions)
+                arr.add(s);
+        }
+        return arr;
+    }
+    
 }
