@@ -12,5 +12,4 @@ import java.util.ArrayList;
  */
 public interface Criteria {
     
-    public Schedule meetCriteria(ArrayList<Object> filters , Object object);
 }

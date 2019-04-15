@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package Model;
-
 import java.util.ArrayList;
 
 /**
  *
  * @author egypt
  */
-public class CriteriaCourse {
+public class CriteriaCourse implements Criteria {
+
+    public Schedule meetCriteria(ArrayList<Courses> filter, Courses c) {
+        return null;       
+    }
+
+   
 
 }
