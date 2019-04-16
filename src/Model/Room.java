@@ -15,12 +15,12 @@ public abstract class Room {
     protected int capacity;
 
 
-    abstract void setName(String name);
+   public abstract void setName(String name);
 
-    abstract void setCapacity(int capacity);
+    public abstract void setCapacity(int capacity);
 
-    abstract String getName();
+   public abstract String getName();
 
-    abstract int getCapacity();
+   public abstract int getCapacity();
     
 }
