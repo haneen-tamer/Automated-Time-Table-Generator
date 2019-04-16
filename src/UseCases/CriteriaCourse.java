@@ -19,7 +19,7 @@ public class CriteriaCourse implements Criteria {
     public Schedule meetsCriteria(Courses c ,Schedule old) {
       
       ArrayList<Session> co = c.GetSessions();
-     
+
       Schedule filter = new  Schedule(old.getDaysStrings(), RoomFactory.get_AllRooms(), old.getStartTime(), old.getEndTime());
       filter.insertSessionsAt(co);
       
