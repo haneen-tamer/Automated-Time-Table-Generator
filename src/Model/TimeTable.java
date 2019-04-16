@@ -9,23 +9,23 @@ import java.util.*;
  *
  * @author Haneen
  */
-public class Schedule {
-    private HashMap<String, Day> week;
+public class TimeTable {
+    private HashMap<String, ScheduleDay> week;
     
-    public Schedule(String [] days, ArrayList<Room> Rooms, int start, int end){
+    public TimeTable(String [] days, ArrayList<Room> Rooms, int start, int end){
         week = new HashMap<>(days.length);
         for (String day : days) {
-            week.put(day, new Day(day, Rooms, start, end));
+            week.put(day, new ScheduleDay(day, Rooms, start, end));
         }
     }
     
     public int addSession(Session s){
-        int state = Day.ROOM_OVERLAP;
+        int state = ScheduleDay.ROOM_OVERLAP;
         
-        ArrayList<Day> Days= (ArrayList) week.values();
-        for(Day current: Days){
+        ArrayList<ScheduleDay> Days= (ArrayList) week.values();
+        for(ScheduleDay current: Days){
             state = current.addSession(s);
-            if(state == Day.NO_OVERLAP) return state;
+            if(state == ScheduleDay.NO_OVERLAP) return state;
         }
         
         return state;
@@ -38,16 +38,16 @@ public class Schedule {
     }
     
     public int getStartTime(){
-        ArrayList<Day> arr= (ArrayList) week.values();
-        for(Day d: arr){
+        ArrayList<ScheduleDay> arr= (ArrayList) week.values();
+        for(ScheduleDay d: arr){
             return d.getStartTime();
         }
         return 0;
     }
     
     public int getEndTime(){
-        ArrayList<Day> arr= (ArrayList) week.values();
-        for(Day d: arr){
+        ArrayList<ScheduleDay> arr= (ArrayList) week.values();
+        for(ScheduleDay d: arr){
             return d.getEndTime();
         }
         return 0;
@@ -58,8 +58,8 @@ public class Schedule {
     }
     public ArrayList<Session> getRoomSchedule(Room r){
         ArrayList<Session> arr = new ArrayList<>();
-        ArrayList<Day> days = (ArrayList) week.values();
-        for(Day d: days){
+        ArrayList<ScheduleDay> days = (ArrayList) week.values();
+        for(ScheduleDay d: days){
             ArrayList<Session> arrSessions =d.getRoomSchedule(r);
             for(Session s: arrSessions)
                 arr.add(s);

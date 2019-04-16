@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package Model;
+import java.io.Serializable;
 
 /**
  *
  * @author egypt
  */
-public abstract class Room {
+public abstract class Room implements Serializable{
     //unnecessary comment
     protected String name;
     protected int capacity;

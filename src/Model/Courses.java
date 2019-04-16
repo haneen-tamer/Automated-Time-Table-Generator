@@ -5,12 +5,13 @@
  */
 package Model;
 import java.util.ArrayList;
+import java.io.Serializable;  
 
 /**
  *
  * @author egypt
  */
-public class Courses {
+public class Courses implements Serializable{
     
     protected String id;
     protected String name;

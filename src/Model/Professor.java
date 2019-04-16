@@ -9,10 +9,9 @@ package Model;
  *
  * @author Aya
  */
-public class TA extends Teacher {
+public class Professor extends Teacher {
     
-    public void setname(String x){
-        this.Name=" TA "+x;
-    }
-    
+   public void setName( String x ){
+      this.Name= "DR "+ x;
+   }
 }

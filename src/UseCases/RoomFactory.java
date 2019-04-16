@@ -5,7 +5,7 @@
  */
 package UseCases;
 import Model.Lab;
-import Model.Class;
+import Model.LectureHall;
 import java.util.ArrayList;
 import java.util.HashMap;
 import Model.Room;
@@ -30,7 +30,7 @@ public class RoomFactory {
    }
    public static void Make_Class(String Name,int capicty)
    {
-       Room r = new Class();
+       Room r = new LectureHall();
        r.setName(Name);
        r.setCapacity(capicty);
    }
