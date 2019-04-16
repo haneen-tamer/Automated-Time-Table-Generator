@@ -9,6 +9,16 @@ import Model.Courses;
 import Model.Room;
 import Model.Teacher;
 import java.util.ArrayList;
+import java.io.Serializable;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  *
@@ -22,11 +32,16 @@ public class FileManager_controller {
      public boolean SaveTeachers(ArrayList<Teacher> At)
     {
         
-        if(FileManger.SaveToFile(Teachers_File, At)==true)
-        {
-            return true;
+       try{
+        FileOutputStream fos=new FileOutputStream(Teachers_File);
+        BufferedOutputStream bos=new BufferedOutputStream(fos);
+        ObjectOutputStream os=new ObjectOutputStream(bos);
+        os.writeObject(At);
+        os.close();
+        
+        return true;
         }
-        else
+        catch(IOException e)
         {
             return false;
         }
@@ -35,27 +50,102 @@ public class FileManager_controller {
       public boolean SaveCourses(ArrayList<Courses> Ac)
     {
         
-        if(FileManger.SaveToFile(Courses_File, Ac)==true)
-        {
-            return true;
+       try{
+        FileOutputStream fos=new FileOutputStream(Courses_File);
+        BufferedOutputStream bos=new BufferedOutputStream(fos);
+        ObjectOutputStream os=new ObjectOutputStream(bos);
+        os.writeObject(Ac);
+        os.close();
+        
+        return true;
         }
-        else
+        catch(IOException e)
         {
             return false;
         }
-        
     }
       public boolean SaveRooms(ArrayList<Room> Ar)
     {
         
-        if(FileManger.SaveToFile(Rooms_File, Ar)==true)
-        {
-            return true;
+        try{
+        FileOutputStream fos=new FileOutputStream(Rooms_File);
+        BufferedOutputStream bos=new BufferedOutputStream(fos);
+        ObjectOutputStream os=new ObjectOutputStream(bos);
+        os.writeObject(Ar);
+        os.close();
+        
+        return true;
         }
-        else
+        catch(IOException e)
         {
+            return false;
+        }
+    }
+    public boolean ReadTeachers() throws ClassNotFoundException
+    {
+        
+        /*.........................................*/
+        try{
+        ArrayList<Teacher> At=new ArrayList<Teacher>();
+        FileInputStream fis=new FileInputStream(Teachers_File);
+        BufferedInputStream bis=new BufferedInputStream(fis);
+        ObjectInputStream is=new ObjectInputStream(bis);
+        
+        At =(ArrayList<Teacher>)is.readObject();
+        is.close();
+        
+        return true;
+        }
+        catch(IOException e)
+        {
+            System.out.println("FileNotFound");
             return false;
         }
         
     }
+    public boolean ReadCourses() throws ClassNotFoundException
+    {
+        
+        /*.........................................*/
+        try{
+        ArrayList<Courses> Ac=new ArrayList<Courses>();
+        FileInputStream fis=new FileInputStream(Courses_File);
+        BufferedInputStream bis=new BufferedInputStream(fis);
+        ObjectInputStream is=new ObjectInputStream(bis);
+        
+        Ac =(ArrayList<Courses>)is.readObject();
+        is.close();
+        
+        return true;
+        }
+        catch(IOException e)
+        {
+            System.out.println("FileNotFound");
+            return false;
+        }
+        
+    }
+     public boolean ReadRooms() throws ClassNotFoundException
+    {
+        
+        /*.........................................*/
+        try{
+        ArrayList<Room> Ar=new ArrayList<Room>();
+        FileInputStream fis=new FileInputStream(Courses_File);
+        BufferedInputStream bis=new BufferedInputStream(fis);
+        ObjectInputStream is=new ObjectInputStream(bis);
+        
+        Ar =(ArrayList<Room>)is.readObject();
+        is.close();
+        
+        return true;
+        }
+        catch(IOException e)
+        {
+            System.out.println("FileNotFound");
+            return false;
+        }
+        
+    }
+
 }
