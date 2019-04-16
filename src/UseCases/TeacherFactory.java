@@ -10,8 +10,8 @@ package UseCases;
  *
  * @author Aya
  */
-import Model.Prof;
-import Model.TA;
+import Model.Professor;
+import Model.TeacherAssistant;
 import Model.Teacher;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,16 +30,16 @@ public class TeacherFactory {
         }
         return r;
     }
-    public static TA makeTA (String ID){
+    public static TeacherAssistant makeTA (String ID){
         
-        Teacher T=new TA();
+        Teacher T=new TeacherAssistant();
         map.put(T.getID(), T);
-        return (TA) T;
+        return (TeacherAssistant) T;
     }
-    public static Prof makeProf(String ID){
-        Teacher T=new Prof();
+    public static Professor makeProf(String ID){
+        Teacher T=new Professor();
         map.put(T.getID(), T);
-        return (Prof)T;
+        return (Professor)T;
     }
     public static void addTeacher(Teacher T){
         

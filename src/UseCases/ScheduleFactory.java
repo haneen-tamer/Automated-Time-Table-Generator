@@ -11,8 +11,8 @@ import Model.*;
  * @author Haneen
  */
 public class ScheduleFactory {
-    public static Schedule generateSchedule(String [] days, int start, int end){
-        Schedule schedule = new Schedule(days, RoomFactory.get_AllRooms(), start, end);
+    public static TimeTable generateSchedule(String [] days, int start, int end){
+        TimeTable schedule = new TimeTable(days, RoomFactory.get_AllRooms(), start, end);
         ArrayList<Courses> courses = CourseFactory.getAllCourses();
         for(Courses c: courses){
             for(Session s: c.GetSessions()){
@@ -22,8 +22,8 @@ public class ScheduleFactory {
         return schedule;
     }
     
-    public static Schedule getSchedule(ArrayList<Courses> c, Schedule finished){
-        Schedule filtered = new Schedule(finished.getDaysStrings(), RoomFactory.get_AllRooms(),
+    public static TimeTable getSchedule(ArrayList<Courses> c, TimeTable finished){
+        TimeTable filtered = new TimeTable(finished.getDaysStrings(), RoomFactory.get_AllRooms(),
                 finished.getStartTime(), finished.getEndTime());
         for(Courses crs : c){
                 filtered.insertSessionsAt(crs.GetSessions());

@@ -10,7 +10,7 @@ package UseCases;
  * @author Aya
  */
 import Model.Courses;
-import Model.Schedule;
+import Model.TimeTable;
 import Model.Session;
 import Model.Teacher;
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class CriteriaTeacher implements Criteria {
     
     
-   public Schedule meetsCriteria(ArrayList<Courses> course,Teacher T,Schedule old  ){
-          Schedule S=new Schedule(old.getDaysStrings(),RoomFactory.get_AllRooms(),old.getStartTime(),old.getEndTime());
+   public TimeTable meetsCriteria(ArrayList<Courses> course,Teacher T,TimeTable old  ){
+          TimeTable S=new TimeTable(old.getDaysStrings(),RoomFactory.get_AllRooms(),old.getStartTime(),old.getEndTime());
          
           
           ArrayList <Session> session=new ArrayList<>();

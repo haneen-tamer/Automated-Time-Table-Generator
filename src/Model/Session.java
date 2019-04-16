@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package Model;
+import java.io.Serializable;
 
 /**
  *
  * @author egypt
  */
-public abstract class Session {
+public abstract class Session implements Serializable{
     
     protected int StartTime;
     protected int Duration;
