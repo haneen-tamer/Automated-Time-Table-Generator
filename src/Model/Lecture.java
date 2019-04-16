@@ -15,12 +15,12 @@ public class Lecture extends Session {
     public Prof professor;
 
     @Override
-    Room getRoom() {
+    public Room getRoom() {
         return LectureHall;
     }
 
     @Override
-    Teacher getTeacher() {
+    public Teacher getTeacher() {
         return professor;
     }
     

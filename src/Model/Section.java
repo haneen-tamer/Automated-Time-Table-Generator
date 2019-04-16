@@ -15,12 +15,12 @@ public class Section extends Session {
     public TA ta;
 
      @Override
-    Room getRoom() {
+    public Room getRoom() {
         return lab;
     }
 
     @Override
-    Teacher getTeacher() {
+    public Teacher getTeacher() {
         return ta;
     }
     
