@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package UseCases;
+import Model.Courses;
+import Model.Schedule;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,9 +16,11 @@ import java.util.ArrayList;
 public class CriteriaCourse implements Criteria {
 
     public Schedule meetCriteria(ArrayList<Courses> filter, Courses c) {
-        return null;       
+      ArrayList<Courses> co = new ArrayList<Courses>();
+       for(Courses cour : filter)
+       {
+       }
     }
 
-   
 
 }
