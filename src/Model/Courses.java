@@ -20,6 +20,7 @@ public class Courses implements Serializable{
     
     public void AddSession(Session session)
     {
+        session.setCourseTitle(id);
         sessions.add(session);
     }
     

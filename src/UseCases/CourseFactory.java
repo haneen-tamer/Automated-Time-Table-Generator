@@ -12,7 +12,7 @@ import Model.*;
  * @author Haneen
  */
 public class CourseFactory {
-    private static HashMap<String, Courses> map;
+    private static HashMap<String, Courses> map= new HashMap<>();
     
     public static String getNextID() {
         int id = map.size()+1;

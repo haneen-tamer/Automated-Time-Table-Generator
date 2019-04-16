@@ -15,7 +15,7 @@ import static jdk.nashorn.internal.objects.NativeArray.map;
  * @author dell
  */
 public class RoomFactory {
-   private static HashMap<String,Room> map;
+   private static HashMap<String,Room> map= new HashMap<>();
    /*.............................................*/
    public static boolean isUniqueName(String n)
    {

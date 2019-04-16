@@ -18,15 +18,15 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class TeacherFactory {
-    private static HashMap<String,Teacher>map;
+    private static HashMap<String,Teacher>map= new HashMap<>();
     
     public static String getNextID(){
         Random rand =new Random();
-        int n =rand.nextInt(map.size());
+        int n =rand.nextInt(map.size()+1);
         String r=Integer.toString(n);
         while(map.containsKey(r)) {
-            
             n++;
+            r=Integer.toString(n);
         }
         return r;
     }
