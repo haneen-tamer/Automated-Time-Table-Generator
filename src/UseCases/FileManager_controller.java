@@ -90,10 +90,12 @@ public class FileManager_controller {
         FileInputStream fis=new FileInputStream(Teachers_File);
         BufferedInputStream bis=new BufferedInputStream(fis);
         ObjectInputStream is=new ObjectInputStream(bis);
-        
         At =(ArrayList<Teacher>)is.readObject();
         is.close();
-        
+        for(int i=0;i<At.size();i++)
+        {
+            TeacherFactory.addTeacher(At.get(i));
+        }
         return true;
         }
         catch(IOException e)
@@ -115,7 +117,10 @@ public class FileManager_controller {
         
         Ac =(ArrayList<Courses>)is.readObject();
         is.close();
-        
+        for(int i=0;i<Ac.size();i++)
+        {
+            CourseFactory.addCourse(Ac.get(i));
+        }
         return true;
         }
         catch(IOException e)
@@ -137,7 +142,10 @@ public class FileManager_controller {
         
         Ar =(ArrayList<Room>)is.readObject();
         is.close();
-        
+        for(int i=0;i<Ar.size();i++)
+        {
+           RoomFactory.Add_Room(Ar.get(i));
+        }
         return true;
         }
         catch(IOException e)
