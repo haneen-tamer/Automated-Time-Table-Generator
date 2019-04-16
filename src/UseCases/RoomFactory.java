@@ -28,17 +28,19 @@ public class RoomFactory {
            return false;
        }
    }
-   public static void Make_Class(String Name,int capicty)
+   public static Room Make_Class(String Name,int capicty)
    {
        Room r = new Class();
        r.setName(Name);
        r.setCapacity(capicty);
+       return r;
    }
-   public static void Make_Lab(String Name,int capicty)
+   public static Room Make_Lab(String Name,int capicty)
    {
        Room r=new Lab();
        r.setName(Name);
        r.setCapacity(capicty);
+       return r;
    }
    public static void Add_Room(Room r)
    {
