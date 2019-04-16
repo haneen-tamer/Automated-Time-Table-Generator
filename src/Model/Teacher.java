@@ -9,6 +9,7 @@ package Model;
  *
  * @author Aya
  */
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
  class TimePair{
@@ -29,7 +30,7 @@ import java.util.ArrayList;
        this.End_Time=endTime;
     }
 }
-public abstract class Teacher {
+public abstract class Teacher implements Serializable{
     protected String ID;
     protected String Name;
     protected String E_Mail;

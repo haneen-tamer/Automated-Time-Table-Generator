@@ -11,8 +11,8 @@ import java.util.ArrayList;
  * @author Haneen
  */
 public class FilterRoom {
-    public static Schedule meetsCriteria(Schedule old, Room r){
-        Schedule filtered =  new Schedule(old.getDaysStrings(), RoomFactory.get_AllRooms(),
+    public static TimeTable meetsCriteria(TimeTable old, Room r){
+        TimeTable filtered =  new TimeTable(old.getDaysStrings(), RoomFactory.get_AllRooms(),
         old.getStartTime(), old.getEndTime());
         filtered.insertSessionsAt(old.getRoomSchedule(r));
         return filtered;

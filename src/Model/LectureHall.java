@@ -9,7 +9,7 @@ package Model;
  *
  * @author egypt
  */
-public class Class extends Room {
+public class LectureHall extends Room {
     
     public void setName(String name) {
         this.name = name;

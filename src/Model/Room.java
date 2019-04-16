@@ -4,23 +4,26 @@
  * and open the template in the editor.
  */
 package Model;
+import java.io.Serializable;
 
 /**
  *
  * @author egypt
  */
-public abstract class Room {
+public abstract class Room implements Serializable{
     //unnecessary comment
     protected String name;
     protected int capacity;
 
 
-   public abstract void setName(String name);
+
+    public abstract void setName(String name);
 
     public abstract void setCapacity(int capacity);
 
-   public abstract String getName();
+    public abstract String getName();
 
-   public abstract int getCapacity();
+    public abstract int getCapacity();
+
     
 }

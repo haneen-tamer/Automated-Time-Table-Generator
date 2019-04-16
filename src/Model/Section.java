@@ -12,22 +12,22 @@ package Model;
 public class Section extends Session {
 
     public Lab lab;
-    public TA ta;
+    public TeacherAssistant ta;
 
      @Override
-    Room getRoom() {
+    public Room getRoom() {
         return lab;
     }
 
     @Override
-    Teacher getTeacher() {
+    public Teacher getTeacher() {
         return ta;
     }
     
     @Override
     public boolean setTeacher(Teacher ta) {
-        if(!(ta instanceof TA)) return false;
-        this.ta = (TA) ta;
+        if(!(ta instanceof TeacherAssistant)) return false;
+        this.ta = (TeacherAssistant) ta;
         return true;
     }
 

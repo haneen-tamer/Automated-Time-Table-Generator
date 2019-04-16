@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 package Model;
+import java.io.Serializable;
 
 /**
  *
  * @author egypt
  */
-public abstract class Session {
+public abstract class Session implements Serializable{
     
     protected int StartTime;
     protected int Duration;
     protected String day;
 
-    abstract Room getRoom();
-    abstract Teacher getTeacher();
-    abstract boolean setTeacher(Teacher t);
-    abstract boolean setRoom(Room r);
+    public abstract Room getRoom();
+    public abstract Teacher getTeacher();
+    public abstract boolean setTeacher(Teacher t);
+    public abstract boolean setRoom(Room r);
 
     public void setDay(String day) {
         this.day = day;

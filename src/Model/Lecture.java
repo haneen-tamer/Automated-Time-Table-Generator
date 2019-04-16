@@ -11,30 +11,30 @@ package Model;
  */
 public class Lecture extends Session {
 
-    public Class LectureHall;
-    public Prof professor;
+    public LectureHall LectureHall;
+    public Professor professor;
 
     @Override
-    Room getRoom() {
+    public Room getRoom() {
         return LectureHall;
     }
 
     @Override
-    Teacher getTeacher() {
+    public Teacher getTeacher() {
         return professor;
     }
     
     @Override
     public boolean setTeacher(Teacher professor) {
-        if(!(professor instanceof Prof)) return false;
-        this.professor =(Prof) professor;
+        if(!(professor instanceof Professor)) return false;
+        this.professor =(Professor) professor;
         return true;
     }
 
     @Override
     public boolean setRoom(Room LectureHall) {
-        if(!(LectureHall instanceof Class)) return false;
-        this.LectureHall =(Class) LectureHall;
+        if(!(LectureHall instanceof LectureHall)) return false;
+        this.LectureHall =(LectureHall) LectureHall;
         return true;
     }  
     

@@ -10,7 +10,7 @@ import java.util.*;
  *
  * @author Haneen
  */
-public class Day {
+public class ScheduleDay {
     private static class SessionComparator implements Comparator<Session>{
 
         @Override
@@ -40,25 +40,25 @@ public class Day {
     private int endTime;
 
     public boolean setStartTime(int startTime) {
-        if(startTime< Day.START_TIME)return false;
+        if(startTime< ScheduleDay.START_TIME)return false;
         this.startTime = startTime;
         return true;
         
     }
 
     public boolean setEndTime(int endTime) {
-        if(endTime> Day.END_TIME) return false;
+        if(endTime> ScheduleDay.END_TIME) return false;
         this.endTime = endTime;
         return true;
     }
     
-    public Day(String name, ArrayList<Room> Rooms, int start, int end){
+    public ScheduleDay(String name, ArrayList<Room> Rooms, int start, int end){
         this.startTime=start;
         this.endTime=end;
         Iterator it = Rooms.iterator();
         while(it.hasNext()){
             mapPerDay.put((Room)it.next(),
-                    new PriorityQueue<>(end-start, new Day.SessionComparator()));
+                    new PriorityQueue<>(end-start, new ScheduleDay.SessionComparator()));
         }
     }
     
@@ -82,7 +82,7 @@ public class Day {
             boolean canFit = false;
             Iterator it = room_sch.iterator();
             ArrayList<Integer> startTimes = getSuitableStartTimes(it, s);
-            if(startTimes.isEmpty()) return Day.ROOM_OVERLAP;
+            if(startTimes.isEmpty()) return ScheduleDay.ROOM_OVERLAP;
             for (Integer startTime1 : startTimes) {
                 int start = startTime1;
                 if(s.getTeacher().addTimePair(this.name, start, start+ s.getDuration())){
@@ -92,15 +92,15 @@ public class Day {
                     break;
                 }
             }
-            if(canFit) return Day.NO_OVERLAP;
-            else return Day.TEACHER_OVERLAP;
+            if(canFit) return ScheduleDay.NO_OVERLAP;
+            else return ScheduleDay.TEACHER_OVERLAP;
         }else{
             s.setStartTime(this.startTime);
             if(!s.getTeacher()
-                .addTimePair(this.name, Day.START_TIME, s.getEndTime())) 
-                return Day.TEACHER_OVERLAP;
+                .addTimePair(this.name, ScheduleDay.START_TIME, s.getEndTime())) 
+                return ScheduleDay.TEACHER_OVERLAP;
             room_sch.add(s);
-            return Day.NO_OVERLAP;
+            return ScheduleDay.NO_OVERLAP;
         }
         
     }
