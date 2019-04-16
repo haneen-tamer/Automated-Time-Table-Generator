@@ -12,7 +12,7 @@ import Model.*;
  */
 public class ScheduleFactory {
     public static Schedule generateSchedule(String [] days, int start, int end){
-        Schedule schedule = new Schedule(days, RoomFactory.getAllRooms(), start, end);
+        Schedule schedule = new Schedule(days, RoomFactory.get_AllRooms(), start, end);
         ArrayList<Courses> courses = CourseFactory.getAllCourses();
         for(Courses c: courses){
             for(Session s: c.GetSessions()){
@@ -23,7 +23,7 @@ public class ScheduleFactory {
     }
     
     public static Schedule getSchedule(ArrayList<Courses> c, Schedule finished){
-        Schedule filtered = new Schedule(finished.getDaysStrings(), RoomFactory.getAllRooms(),
+        Schedule filtered = new Schedule(finished.getDaysStrings(), RoomFactory.get_AllRooms(),
                 finished.getStartTime(), finished.getEndTime());
         for(Courses crs : c){
                 filtered.insertSessionsAt(crs.GetSessions());

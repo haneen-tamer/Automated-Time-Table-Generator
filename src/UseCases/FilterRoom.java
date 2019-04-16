@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class FilterRoom {
     public static Schedule meetsCriteria(Schedule old, Room r){
-        Schedule filtered =  new Schedule(old.getDaysStrings(), RoomFactory.getAllRooms(),
+        Schedule filtered =  new Schedule(old.getDaysStrings(), RoomFactory.get_AllRooms(),
         old.getStartTime(), old.getEndTime());
         filtered.insertSessionsAt(old.getRoomSchedule(r));
         return filtered;
