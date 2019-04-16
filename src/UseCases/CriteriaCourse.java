@@ -6,6 +6,7 @@
 package UseCases;
 import Model.Courses;
 import Model.Schedule;
+import Model.Session;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,13 @@ import java.util.List;
  */
 public class CriteriaCourse implements Criteria {
 
-    public Schedule meetCriteria(ArrayList<Courses> filter, Courses c) {
-      ArrayList<Courses> co = new ArrayList<Courses>();
-       for(Courses cour : filter)
-       {
-       }
+    public Schedule meetsCriteria(Courses c ,Schedule old) {
+      
+      ArrayList<Session> co = c.GetSessions();
+      Schedule filter = Schedule(old.getDaysStrings(), old.getAllRooms(), old.getStartTime(), old.getEndTime());
+      filter.insertSessionsAt(co);
+      
+      return filter;
     }
-
 
 }
