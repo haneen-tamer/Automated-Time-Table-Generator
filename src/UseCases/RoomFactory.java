@@ -54,7 +54,8 @@ public class RoomFactory {
    public static ArrayList<Room> get_AllRooms()
    {
        ArrayList<Room> a=(ArrayList<Room>)map.values();
-       /*........................................*/
+       /*...............................
+       unnecessary comment.........*/
        return a;
    }
 }
