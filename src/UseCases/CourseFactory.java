@@ -36,10 +36,10 @@ public class CourseFactory {
     }
     
     public static ArrayList<Courses> getAllCourses(){
-        ArrayList<Courses> all = new ArrayList<>();
-        for(Courses c: map.values()){
-            all.add(c);
-        }
+        ArrayList<Courses> all = new ArrayList<>(map.values());
+//        for(Courses c: map.values()){
+//            all.add(c);
+//        }
         return all;
     }
 }

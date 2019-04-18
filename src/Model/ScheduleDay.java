@@ -53,6 +53,7 @@ public class ScheduleDay {
     }
     
     public ScheduleDay(String name, ArrayList<Room> Rooms, int start, int end){
+        mapPerDay = new HashMap<>(Rooms.size());
         this.startTime=start;
         this.endTime=end;
         Iterator it = Rooms.iterator();

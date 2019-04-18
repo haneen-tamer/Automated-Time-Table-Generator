@@ -12,49 +12,63 @@ import java.util.*;
  * @author Haneen
  */
 public class consoleTest {
-    public static void main(String [] args){
+    public static void main(String [] args) throws Exception{
         //if files are empty
-        //HashMap<Room, Room> jk = HashMap<>();
-        //System.out.print(jk.size());
         
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter Number of Teachers: ");
-        int numTeachers = input.nextInt();
-        for(int i=0; i<numTeachers; i++)
-            ReadTeacher(input);
-        
-        System.out.print("Enter Number of Rooms: ");
-        int numRooms = input.nextInt();
-        for(int i=0; i<numRooms; i++)
-            ReadRoom(input);
-        
-        
-        
-        
-        System.out.print("Enter Number of Courses: ");
-        int numCourse= input.nextInt();
-        for(int i=0; i<numCourse; i++)
+        if(false){
+            ReadRooms(input);
+            ReadTeachers(input);
             ReadCourses(input);
+            
+            ScheduleDialog(input);
+        }else{
+            if(FileManager_controller.ReadRooms())
+                printFilereadingStatus("");
+            else printFilereadingStatus(" not ");
+            if(FileManager_controller.ReadTeachers())
+                    printFilereadingStatus("");
+            else printFilereadingStatus(" not ");
+            if(FileManager_controller.ReadCourses())
+                    printFilereadingStatus("");
+            else printFilereadingStatus(" not ");
+            
+            ScheduleDialog(input);
+        }
         
-        String [] days = new String[2];
+    }
+    
+    public static void ScheduleDialog(Scanner input){
+        ArrayList<String> days = new ArrayList<>(7);
         System.out.println("Enter the Days you want :");
-        for(int i=0;i<days.length;i++){
-            days[i]=input.next();
+        String d = input.next();
+        while(!d.contains("end")){
+            days.add(d);
+            d=input.next();
         }
         System.out.println("Enter Start Time :");
         int Start=input.nextInt();
         System.out.println("Enter End Time :");
         int end=input.nextInt();
         
-        TimeTable t =ScheduleFactory.generateSchedule(days, Start, end);
-        for(Room r: RoomFactory.get_AllRooms()){
-            for(Session s: t.getRoomSchedule(r)){
-                displaySession(s);
-            }
-        }
+        String [] daysArr = new String[days.size()];
+        days.toArray(daysArr);
+        TimeTable t = ScheduleFactory.generateSchedule(daysArr, Start, end);
+        traverseTimeTable(t);
     }
     
-    public static void ReadRoom(Scanner input){
+    public static void printFilereadingStatus(String status){
+        System.out.println("File Reading was "+status+" succesful!");
+    }
+    
+    public static void ReadRooms(Scanner input){
+        System.out.print("Enter Number of Rooms: ");
+            int numRooms = input.nextInt();
+            for(int i=0; i<numRooms; i++)
+                ReadSingleRoom(input);
+            FileManager_controller.SaveRooms(RoomFactory.get_AllRooms());
+    }
+    public static void ReadSingleRoom(Scanner input){
         System.out.println("Enter Room Data: ");
         System.out.print("Enter Room Name: ");
         String name = input.next();
@@ -72,7 +86,14 @@ public class consoleTest {
         }
     }
     
-    public static void ReadTeacher(Scanner input){
+    public static void ReadTeachers(Scanner input){
+        System.out.print("Enter Number of Teachers: ");
+            int numTeachers = input.nextInt();
+            for(int i=0; i<numTeachers; i++)
+                ReadSingleTeacher(input);
+            FileManager_controller.SaveTeachers(TeacherFactory.getAllTeachers());
+    }
+    public static void ReadSingleTeacher(Scanner input){
         System.out.println("Enter Teacher Data: ");
         System.out.print("Teacher ID: ");
         String ID=TeacherFactory.getNextID();
@@ -84,16 +105,21 @@ public class consoleTest {
         String email = input.next();
         System.out.print("Enter Teacher Phone:(L/C) ");
         String phone = input.next();
-        System.out.print("Enter Number of courses:");
-        int num_courses= input.nextInt();
+        
         System.out.print("Enter your postion (Prof/TA)");
         String pos=input.next();
         Teacher t;
         if(pos.equals("Prof")){
             t=TeacherFactory.makeProf(ID);
+            t.setE_Mail(email);
+        t.setName(name);
+        t.setPhone(phone);
         }
         else if(pos.equals("TA")){
             t=TeacherFactory.makeTA(ID);
+            t.setE_Mail(email);
+        t.setName(name);
+        t.setPhone(phone);
         }
         else{
             System.out.println("Invalid Type !!");
@@ -101,11 +127,19 @@ public class consoleTest {
         
           
     }
+    
     public static void ReadCourses(Scanner input){
+        System.out.print("Enter Number of Courses: ");
+            int numCourse= input.nextInt();
+            for(int i=0; i<numCourse; i++)
+                ReadSingleCourse(input);
+            FileManager_controller.SaveCourses(CourseFactory.getAllCourses());
+    }
+    public static void ReadSingleCourse(Scanner input){
         System.out.println("Enter Courses Data: ");
         System.out.print("Course ID: ");
         String ID=CourseFactory.getNextID();
-        System.out.print(ID);
+        System.out.println(ID);
         
         System.out.print("Enter Course Name: ");
         String name =input.next();
@@ -121,7 +155,7 @@ public class consoleTest {
             System.out.print("Enter Room Name :");
             String room_name=input.next();
             Room room=RoomFactory.get_Room(room_name);
-            System.out.print("Enter Teacher Name:");
+            System.out.print("Enter Teacher ID:");
             String Teacher_name=input.next();
             Teacher teacher=TeacherFactory.getTeacher(Teacher_name);
             System.out.print("Enter Room (L/S):");
@@ -151,6 +185,23 @@ public class consoleTest {
     }
     
     public static void displaySession(Session s){
-            System.out.print(s);
+        String p = s.getCourseTitle()+" "+s.getTeacher();
+            System.out.print(p+"\t");
         }
+    public static void traverseTimeTable(TimeTable t){
+        RoomFactory.get_AllRooms().stream().forEach((r) -> {
+            System.out.print(r.getName()+"\t");
+            String day, before="";
+            for(Session s: t.getRoomSchedule(r)){
+                day = s.getDay();
+                if(!day.equals(before)){
+                    System.out.print(day+"\t");
+                    before=day;
+                }
+                displaySession(s);
+                
+            };
+            
+        });
+    }
 }

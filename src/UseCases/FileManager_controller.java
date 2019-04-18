@@ -25,11 +25,11 @@ import java.io.Serializable;
  * @author dell
  */
 public class FileManager_controller {
-   private String Teachers_File;
-   private String Courses_File;
-   private String Rooms_File;
+   private static final String Teachers_File="Teachers.txt";
+   private static final String Courses_File="Courses.txt";
+   private static final String Rooms_File="Rooms.txt";
     /*......................................................*/
-     public boolean SaveTeachers(ArrayList<Teacher> At)
+     public static boolean SaveTeachers(ArrayList<Teacher> At)
     {
         
        try{
@@ -47,7 +47,7 @@ public class FileManager_controller {
         }
         
     }
-      public boolean SaveCourses(ArrayList<Courses> Ac)
+      public static boolean SaveCourses(ArrayList<Courses> Ac)
     {
         
        try{
@@ -64,7 +64,7 @@ public class FileManager_controller {
             return false;
         }
     }
-      public boolean SaveRooms(ArrayList<Room> Ar)
+      public static boolean SaveRooms(ArrayList<Room> Ar)
     {
         
         try{
@@ -81,7 +81,7 @@ public class FileManager_controller {
             return false;
         }
     }
-    public boolean ReadTeachers() throws ClassNotFoundException
+    public static boolean ReadTeachers() throws ClassNotFoundException
     {
         
         /*.........................................*/
@@ -105,7 +105,7 @@ public class FileManager_controller {
         }
         
     }
-    public boolean ReadCourses() throws ClassNotFoundException
+    public static boolean ReadCourses() throws ClassNotFoundException
     {
         
         /*.........................................*/
@@ -130,17 +130,17 @@ public class FileManager_controller {
         }
         
     }
-     public boolean ReadRooms() throws ClassNotFoundException
+     public static boolean ReadRooms() throws ClassNotFoundException
     {
         
         /*.........................................*/
         try{
-        ArrayList<Room> Ar=new ArrayList<Room>();
-        FileInputStream fis=new FileInputStream(Courses_File);
+        ArrayList<Room> Ar;
+        FileInputStream fis=new FileInputStream(Rooms_File);
         BufferedInputStream bis=new BufferedInputStream(fis);
         ObjectInputStream is=new ObjectInputStream(bis);
         
-        Ar =(ArrayList<Room>)is.readObject();
+        Ar =(ArrayList<Room>) is.readObject();
         is.close();
         for(int i=0;i<Ar.size();i++)
         {
