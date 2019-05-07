@@ -16,7 +16,7 @@ public class consoleTest {
         //if files are empty
         
         Scanner input = new Scanner(System.in);
-        if(true){
+        if(false){
             ReadRooms(input);
             ReadTeachers(input);
             ReadCourses(input);
