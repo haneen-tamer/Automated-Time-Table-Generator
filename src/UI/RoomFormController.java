@@ -11,9 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import UseCases.RoomFactory;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -29,7 +32,8 @@ public class RoomFormController implements Initializable {
     private RadioButton lecture;
     @FXML
     private RadioButton lab;
-     
+     @FXML
+    private AnchorPane pane;
     /**
      * Initializes the controller class.
      */
@@ -96,8 +100,11 @@ public class RoomFormController implements Initializable {
            RoomName.setText(" ");
            Capacity.setText(" ");
            lab.selectedProperty().setValue(false);
-       }
-         
-          
+       }         
 }
+    public void BackToHome() throws IOException
+    {
+        AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
+        pane.getChildren().setAll(home);
+    }
 }

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -29,5 +30,10 @@
       <RadioButton fx:id="lecture" layoutX="172.0" layoutY="260.0" mnemonicParsing="false" text="LectureHall" />
       <RadioButton fx:id="lab" layoutX="334.0" layoutY="260.0" mnemonicParsing="false" text="Lab" />
       <Button layoutX="398.0" layoutY="333.0" mnemonicParsing="false" onAction="#check" prefHeight="36.0" prefWidth="110.0" text="Add Room" />
+      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="-2.0" layoutY="-2.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="45.0" prefWidth="65.0" text="Home" textAlignment="CENTER">
+         <effect>
+            <DropShadow height="38.79" radius="17.3525" width="32.62" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
