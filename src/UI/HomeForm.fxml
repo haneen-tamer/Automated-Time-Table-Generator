@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.HomeFormController">
+   <children>
+      <Label layoutX="234.0" prefHeight="83.0" prefWidth="258.0" text="Welcome">
+         <font>
+            <Font name="Arial Bold Italic" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="181.0" fitWidth="396.0" layoutX="105.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="79.0" layoutY="295.0" mnemonicParsing="false" onAction="#MakeSchedule" text="Make Schedule" />
+      <Button layoutX="453.0" layoutY="295.0" mnemonicParsing="false" onAction="#AddCourse" text="Add Course" />
+      <Button layoutX="262.0" layoutY="295.0" mnemonicParsing="false" onAction="#AddTeacher" text="Add Teacher" />
+   </children>
+</AnchorPane>
