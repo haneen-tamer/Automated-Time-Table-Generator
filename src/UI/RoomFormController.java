@@ -41,7 +41,7 @@ public class RoomFormController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {              
     }    
     
-    private static boolean NumberOrNot(String text) {
+ /*   private static boolean NumberOrNot(String text) {
          try
         {
             Integer.parseInt(text);
@@ -52,12 +52,65 @@ public class RoomFormController implements Initializable {
         }
         return true;    
      }
-     
+     */
     @FXML
     public void check()
     {
+       String name = "";
+       int cap = 0;
+       try
+       {
+           name = RoomName.getText();
+           
+           if(name.equals("")||Capacity.getText().equals("")||(!lecture.isSelected() && !lab.isSelected()))
+           throw new Exception();
+            
+        cap = Integer.valueOf(Capacity.getText());
+        
+         if(!RoomFactory.isUniqueName(name))
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+           alert.setTitle("Exception");
+           alert.setHeaderText("Failture");
+           alert.setContentText("This Name is Used !");
+           alert.showAndWait();
+           return;
+        }
        
-       if(RoomName.getText().equals("") || Capacity.getText().equals(""))
+            if(lecture.isSelected())
+        {
+           RoomFactory.Make_Class(name,cap);
+           RoomName.clear();
+           Capacity.clear();
+           lecture.selectedProperty().setValue(false);
+        }
+            
+       else if(lab.isSelected())
+       {
+           RoomFactory.Make_Lab(name, cap);
+           RoomName.clear();
+           Capacity.clear();
+           lab.selectedProperty().setValue(false);
+       } 
+       }
+       catch(NumberFormatException ex){
+           Alert alert = new Alert(AlertType.ERROR);
+           alert.setTitle("Exception");
+           alert.setHeaderText("Failture");
+           alert.setContentText("Sorry, You Have to Enter Numbers only! ");
+           alert.showAndWait();
+           return;
+       }
+       catch(Exception e){
+           Alert a=new Alert(AlertType.ERROR);
+           a.setTitle("Exception");
+           a.setHeaderText("Failture");
+           a.setContentText("Sorry, You Have to Enter Data First! ");
+           a.showAndWait();
+           return;
+       }
+    }
+    /*   if(RoomName.getText().equals("") || Capacity.getText().equals(""))
          {
           Alert alert = new Alert(AlertType.WARNING);
           alert.setTitle("Exception");
@@ -74,34 +127,8 @@ public class RoomFormController implements Initializable {
           alert.setContentText("You have to choose one of Room's type..");
           alert.showAndWait();
          }
-        
+     */  
          
-       String name = RoomName.getText();
-       int cap = Integer.valueOf(Capacity.getText());
-       if(!NumberOrNot(Capacity.getText()))
-      {
-          Alert alert = new Alert(AlertType.WARNING);
-          alert.setTitle("Exception");
-          alert.setHeaderText(null);
-          alert.setContentText("You can only input Numbers..");
-          alert.showAndWait();
-      }   
-       if(lecture.isSelected())
-      {
-           RoomFactory.Make_Class(name, cap);
-           RoomName.setText(" ");
-           Capacity.setText(" ");
-           lecture.selectedProperty().setValue(false);
-
-      }
-       else if(lab.isSelected())
-       {
-           RoomFactory.Make_Lab(name, cap);
-           RoomName.setText(" ");
-           Capacity.setText(" ");
-           lab.selectedProperty().setValue(false);
-       }         
-}
     public void BackToHome() throws IOException
     {
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
