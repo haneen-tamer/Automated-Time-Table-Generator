@@ -22,7 +22,7 @@ public class TimeTable {
     public int addSession(Session s){
         int state = ScheduleDay.ROOM_OVERLAP;
         
-        ArrayList<ScheduleDay> Days= (ArrayList) week.values();
+        ArrayList<ScheduleDay> Days= new ArrayList<>( week.values());
         for(ScheduleDay current: Days){
             state = current.addSession(s);
             if(state == ScheduleDay.NO_OVERLAP) return state;
@@ -58,7 +58,7 @@ public class TimeTable {
     }
     public ArrayList<Session> getRoomSchedule(Room r){
         ArrayList<Session> arr = new ArrayList<>();
-        ArrayList<ScheduleDay> days = (ArrayList) week.values();
+        ArrayList<ScheduleDay> days = new ArrayList<>( week.values() );
         for(ScheduleDay d: days){
             ArrayList<Session> arrSessions =d.getRoomSchedule(r);
             for(Session s: arrSessions)

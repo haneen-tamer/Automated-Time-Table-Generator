@@ -9,13 +9,14 @@ import Model.LectureHall;
 import java.util.ArrayList;
 import java.util.HashMap;
 import Model.Room;
+import java.util.List;
 import static jdk.nashorn.internal.objects.NativeArray.map;
 /**
  *
  * @author dell
  */
 public class RoomFactory {
-   private static HashMap<String,Room> map;
+   private static HashMap<String,Room> map= new HashMap<>();
    /*.............................................*/
    public static boolean isUniqueName(String n)
    {
@@ -33,6 +34,7 @@ public class RoomFactory {
        Room r = new LectureHall();
        r.setName(Name);
        r.setCapacity(capicty);
+       map.put(Name, r);
        return r;
    }
    public static Room Make_Lab(String Name,int capicty)
@@ -40,6 +42,7 @@ public class RoomFactory {
        Room r=new Lab();
        r.setName(Name);
        r.setCapacity(capicty);
+       map.put(Name, r);
        return r;
    }
    public static void Add_Room(Room r)
@@ -55,9 +58,8 @@ public class RoomFactory {
    }
    public static ArrayList<Room> get_AllRooms()
    {
-       ArrayList<Room> a=(ArrayList<Room>)map.values();
-       /*...............................
-       unnecessary comment.........*/
+       ArrayList<Room> a=new ArrayList<Room>(map.values());
+       
        return a;
    }
 }

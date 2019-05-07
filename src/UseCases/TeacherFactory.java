@@ -18,27 +18,29 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class TeacherFactory {
-    private static HashMap<String,Teacher>map;
+    private static HashMap<String,Teacher>map= new HashMap<>();
     
     public static String getNextID(){
         Random rand =new Random();
-        int n =rand.nextInt(map.size());
+        int n =rand.nextInt(map.size()+1);
         String r=Integer.toString(n);
         while(map.containsKey(r)) {
-            
             n++;
+            r=Integer.toString(n);
         }
         return r;
     }
     public static TeacherAssistant makeTA (String ID){
         
         Teacher T=new TeacherAssistant();
-        map.put(T.getID(), T);
+        T.setID(ID);
+        map.put(ID, T);
         return (TeacherAssistant) T;
     }
     public static Professor makeProf(String ID){
         Teacher T=new Professor();
-        map.put(T.getID(), T);
+        T.setID(ID);
+        map.put(ID, T);
         return (Professor)T;
     }
     public static void addTeacher(Teacher T){
@@ -53,10 +55,10 @@ public class TeacherFactory {
     }
     
     public static ArrayList<Teacher> getAllTeachers(){
-        ArrayList <Teacher> A=new ArrayList<>();
-        for(Teacher T: map.values()){
-            A.add(T);
-        }
+        ArrayList <Teacher> A=new ArrayList<>(map.values());
+//        for(Teacher T: map.values()){
+//            A.add(T);
+//        }
         return A;
         
         

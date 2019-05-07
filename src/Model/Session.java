@@ -15,12 +15,19 @@ public abstract class Session implements Serializable{
     protected int StartTime;
     protected int Duration;
     protected String day;
+    protected String CourseTitle;
 
     public abstract Room getRoom();
     public abstract Teacher getTeacher();
     public abstract boolean setTeacher(Teacher t);
     public abstract boolean setRoom(Room r);
 
+    public void setCourseTitle(String t){
+        this.CourseTitle=t;
+    }
+    public String getCourseTitle(){
+        return this.CourseTitle;
+    }
     public void setDay(String day) {
         this.day = day;
     }

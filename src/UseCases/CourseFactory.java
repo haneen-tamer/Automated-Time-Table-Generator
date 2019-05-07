@@ -12,7 +12,7 @@ import Model.*;
  * @author Haneen
  */
 public class CourseFactory {
-    private static HashMap<String, Courses> map;
+    private static HashMap<String, Courses> map= new HashMap<>();
     
     public static String getNextID() {
         int id = map.size()+1;
@@ -36,10 +36,10 @@ public class CourseFactory {
     }
     
     public static ArrayList<Courses> getAllCourses(){
-        ArrayList<Courses> all = new ArrayList<>();
-        for(Courses c: map.values()){
-            all.add(c);
-        }
+        ArrayList<Courses> all = new ArrayList<>(map.values());
+//        for(Courses c: map.values()){
+//            all.add(c);
+//        }
         return all;
     }
 }
