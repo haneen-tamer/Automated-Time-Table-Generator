@@ -49,8 +49,10 @@ public class RoomFormController implements Initializable {
         return true;    
      }
      
+    @FXML
     public void check()
     {
+       
        if(RoomName.getText().equals("") || Capacity.getText().equals(""))
          {
           Alert alert = new Alert(AlertType.WARNING);
@@ -65,9 +67,10 @@ public class RoomFormController implements Initializable {
           Alert alert = new Alert(AlertType.WARNING);
           alert.setTitle("Exception");
           alert.setHeaderText(null);
-          alert.setContentText("You have to choose one of them..");
+          alert.setContentText("You have to choose one of Room's type..");
           alert.showAndWait();
          }
+        
          
        String name = RoomName.getText();
        int cap = Integer.valueOf(Capacity.getText());

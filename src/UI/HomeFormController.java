@@ -30,7 +30,7 @@ public class HomeFormController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try{
+   /*     try{
           FileManager_controller.ReadCourses();
           FileManager_controller.ReadRooms();
           FileManager_controller.ReadTeachers();
@@ -45,7 +45,7 @@ public class HomeFormController implements Initializable {
            System.out.println("ClassNotFound");
         }
        
-        
+       */ 
     }    
     
     public void MakeSchedule() throws IOException
@@ -62,5 +62,10 @@ public class HomeFormController implements Initializable {
     {
         AnchorPane course = FXMLLoader.load(getClass().getResource(""));
         pane.getChildren().setAll(course);
+    }
+    public void AddRoom() throws IOException
+    {
+       AnchorPane room = FXMLLoader.load(getClass().getResource("roomForm.fxml"));
+        pane.getChildren().setAll(room);
     }
 }
