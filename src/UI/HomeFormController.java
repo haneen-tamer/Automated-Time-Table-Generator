@@ -55,7 +55,7 @@ public class HomeFormController implements Initializable {
     }
      public void AddTeacher() throws IOException
     {
-        AnchorPane teacher = FXMLLoader.load(getClass().getResource(""));
+        AnchorPane teacher = FXMLLoader.load(getClass().getResource("Teacher.fxml"));
         pane.getChildren().setAll(teacher);
     }
       public void AddCourse() throws IOException

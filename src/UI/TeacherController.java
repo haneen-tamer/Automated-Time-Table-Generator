@@ -15,9 +15,12 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import UseCases.*;
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javax.swing.JOptionPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
@@ -27,6 +30,7 @@ import javafx.scene.control.Alert.AlertType;
 public class TeacherController implements Initializable {
 
     
+    @FXML
    private TextField IDField; 
     @FXML
    private TextField NameField;
@@ -37,12 +41,11 @@ public class TeacherController implements Initializable {
     @FXML
    private RadioButton ProfField;
     @FXML
-   private Label IDLabel;
-    @FXML
    private RadioButton TAfield;
     @FXML
    private Button buttonField;
-   
+   @FXML
+    private AnchorPane pane;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,6 +53,7 @@ public class TeacherController implements Initializable {
         
         
     }    
+    @FXML
     public void Button(){
        
       String Id=" ";
@@ -117,6 +121,8 @@ public class TeacherController implements Initializable {
          
            
        }
+      
+      
 //      NameField.clear();
 //      PhoneField.clear();
 //      EmailField.clear();
@@ -138,7 +144,12 @@ public class TeacherController implements Initializable {
            T.setPhone(phone);
        }*/
        
-}    
+} 
+    public void BackToHome() throws IOException
+    {
+        AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
+        pane.getChildren().setAll(home);
+    }
 
        
 //       int phone=Integer.parseInt(PhoneField.getText());
@@ -207,6 +218,7 @@ public class TeacherController implements Initializable {
 //      
 //        
 //    }
+
 
  
 }
