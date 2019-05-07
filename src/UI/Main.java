@@ -24,7 +24,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("roomForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
 
      /*   Button btn = new Button();
         btn.setText("Say 'Hello World'");
@@ -41,7 +41,7 @@ public class Main extends Application {
 */
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Automated Time Table");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
