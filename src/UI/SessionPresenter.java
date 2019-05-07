@@ -7,21 +7,31 @@ package UI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import Model.Session;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
  *
  * @author Haneen
  */
-public class SessionPresenter implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+public class SessionPresenter extends AnchorPane {
     
+    private Label CourseTitle;
+    
+    private Label TeacherName;
+    
+    private Session session;
+    
+    public SessionPresenter(Session s){
+        session=s;
+        CourseTitle = new Label(session.getCourseTitle());
+        this.TeacherName=new Label(session.getTeacher().getName());
+        this.getChildren().add(CourseTitle);
+        this.getChildren().add(TeacherName);
+    }
+     
 }
