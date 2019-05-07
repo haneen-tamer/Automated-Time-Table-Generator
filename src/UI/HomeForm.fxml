@@ -14,8 +14,9 @@
          </font>
       </Label>
       <ImageView fitHeight="181.0" fitWidth="396.0" layoutX="105.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="79.0" layoutY="295.0" mnemonicParsing="false" onAction="#MakeSchedule" text="Make Schedule" />
-      <Button layoutX="453.0" layoutY="295.0" mnemonicParsing="false" onAction="#AddCourse" text="Add Course" />
-      <Button layoutX="262.0" layoutY="295.0" mnemonicParsing="false" onAction="#AddTeacher" text="Add Teacher" />
+      <Button layoutX="229.0" layoutY="342.0" mnemonicParsing="false" onAction="#MakeSchedule" prefHeight="36.0" prefWidth="143.0" text="Make Schedule" />
+      <Button layoutX="261.0" layoutY="276.0" mnemonicParsing="false" onAction="#AddCourse" text="Add Course" />
+      <Button layoutX="70.0" layoutY="276.0" mnemonicParsing="false" onAction="#AddTeacher" text="Add Teacher" />
+      <Button layoutX="432.0" layoutY="276.0" mnemonicParsing="false" onAction="#AddRoom" text="Add Room" />
    </children>
 </AnchorPane>
