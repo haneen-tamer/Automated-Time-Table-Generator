@@ -63,7 +63,6 @@ public class TimeTableSceneController implements Initializable {
     private TimeTable generatedTimeTable;
     
     //Filter
-    @FXML
     private Pane filter;
     @FXML
     private ChoiceBox FilterRoom;
@@ -77,7 +76,7 @@ public class TimeTableSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        filter.setVisible(false);
+        //filter.setVisible(false);
         checkedDays = new HashSet<>();
         daysCheckBoxes = new ArrayList<>();
         daysPane = new FlowPane();
@@ -101,6 +100,7 @@ public class TimeTableSceneController implements Initializable {
         }
     } 
     
+    @FXML
     public void makeSchedule(){
         
         for(CheckBox c:daysCheckBoxes){
@@ -229,11 +229,13 @@ public class TimeTableSceneController implements Initializable {
         return arr;
     }
     
+    @FXML
     public void filterByRoom(){
         Room r = RoomFactory.get_Room((String)FilterRoom.getValue());
         TimeTable filtered = UseCases.FilterRoom.meetsCriteria(generatedTimeTable, r);
         setTimeTableGrid(filtered);
     }
+    @FXML
     public void filterByTeacher(){
         String choice =(String) FilterTeacher.getValue();
         String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
@@ -244,6 +246,7 @@ public class TimeTableSceneController implements Initializable {
                         generatedTimeTable);
         setTimeTableGrid(filtered);
     }
+    @FXML
     public void filterByCourse(){
         String choice =(String) FilterCourse.getValue();
         String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
@@ -258,6 +261,7 @@ public class TimeTableSceneController implements Initializable {
         TimeTableScrollPane.setContent(t);
     }
 
+    @FXML
     public void BackToHome() throws IOException
     {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));

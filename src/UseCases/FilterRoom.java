@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Haneen
  */
-public class FilterRoom {
+public class FilterRoom implements Criteria {
     public static TimeTable meetsCriteria(TimeTable old, Room r){
         TimeTable filtered =  new TimeTable(old.getDaysStrings(), RoomFactory.get_AllRooms(),
         old.getStartTime(), old.getEndTime());

@@ -38,7 +38,6 @@ public class CourseformController implements Initializable {
     public Label ID;
     @FXML
     public Label Name;
-    @FXML
     public Label NO_;
     @FXML
     public Label Teacher;
@@ -60,7 +59,6 @@ public class CourseformController implements Initializable {
    public RadioButton R1;
     @FXML
    public RadioButton R2;
-    @FXML
    public ComboBox<String>c1;
     @FXML
    public ComboBox <String> C2;
@@ -71,6 +69,10 @@ public class CourseformController implements Initializable {
    private String id;
    Session s;
    Courses c;
+    @FXML
+    private Label No_;
+    @FXML
+    private ComboBox<?> C1;
     /**
      * Initializes the controller class.
      */
@@ -85,6 +87,7 @@ public class CourseformController implements Initializable {
         get_rooms();
         //C2.setItems((ObservableList<String>)s2);
     }   
+    @FXML
     public void ADD_session(ActionEvent e) throws Exception
     {
         Teacher teacher;
@@ -142,6 +145,7 @@ public class CourseformController implements Initializable {
          return;
         }
     }
+    @FXML
      public void Add_course(ActionEvent ee)
     {
         CourseFactory.addCourse(c);
