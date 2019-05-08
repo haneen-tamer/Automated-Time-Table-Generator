@@ -101,8 +101,7 @@ public class RoomFormController implements Initializable {
     }
    
     public void BackToHome() throws IOException
-    {
-        
+    {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
         FileManager_controller.SaveRooms(RoomFactory.get_AllRooms());

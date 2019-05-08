@@ -9,11 +9,13 @@ import Model.TimeTable;
 import UseCases.RoomOverlapException;
 import UseCases.ScheduleFactory;
 import UseCases.TeacherOverlapException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Alert;
@@ -22,6 +24,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -33,6 +36,8 @@ import javafx.scene.layout.Pane;
  */
 public class TimeTableSceneController implements Initializable {
 
+    @FXML
+    private AnchorPane pane;
     @FXML
     private TextField startTxtBox;
     @FXML
@@ -47,6 +52,17 @@ public class TimeTableSceneController implements Initializable {
     public HashSet<String> checkedDays;
     private ArrayList<CheckBox> daysCheckBoxes;
     private TimeTable generatedTimeTable;
+    
+    //Filter
+    @FXML
+    private Pane filter;
+    @FXML
+    private ChoiceBox FilterRoom;
+    @FXML
+    private ChoiceBox FilterTeacher;
+    @FXML
+    private ChoiceBox FilterCourse;
+    
     /**
      * Initializes the controller class.
      */
@@ -119,5 +135,9 @@ public class TimeTableSceneController implements Initializable {
         TimeTablePresenter t = new TimeTablePresenter(generatedTimeTable);
         TimeTableScrollPane.setContent(t);
     }
-    
+    public void BackToHome() throws IOException
+    {     
+        AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
+        pane.getChildren().setAll(home);
+    }
 }
