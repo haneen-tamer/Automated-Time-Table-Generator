@@ -15,9 +15,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import UseCases.*;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javax.swing.JOptionPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
@@ -25,7 +27,9 @@ import javafx.scene.control.Alert.AlertType;
  */
  
 public class TeacherController implements Initializable {
-
+    
+   @FXML
+   private AnchorPane pane;
     @FXML
    private Label IDField; 
     @FXML
@@ -61,6 +65,7 @@ public class TeacherController implements Initializable {
      IDField.setText(I);
      
 }
+    @FXML
     public void Button(){
      
       String Id=" ";
@@ -146,11 +151,14 @@ public class TeacherController implements Initializable {
            EmailField.clear();
            ProfField.setSelected(false);
            TAfield.setSelected(false);
-      
-      
 
 }    
-
+   @FXML
+   public void BackToHome() throws IOException
+    {     
+        AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
+        pane.getChildren().setAll(home);
+    }
        
 
 }

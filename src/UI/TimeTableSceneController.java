@@ -5,9 +5,13 @@
  */
 package UI;
 
+import Model.Room;
+import Model.Teacher;
 import Model.TimeTable;
+import UseCases.RoomFactory;
 import UseCases.RoomOverlapException;
 import UseCases.ScheduleFactory;
+import UseCases.TeacherFactory;
 import UseCases.TeacherOverlapException;
 import java.io.IOException;
 import java.net.URL;
@@ -80,6 +84,16 @@ public class TimeTableSceneController implements Initializable {
         }
         
         daysScrollPane.setContent(daysPane);
+        
+        //filterTeacher
+         for( Teacher t:TeacherFactory.getAllTeachers()){
+            this.FilterTeacher.getItems().add(t.getName()+"\t"+"("+t.getID()+")");
+        }
+         
+         //RoomTeacher
+         for(Room r:RoomFactory.get_AllRooms()){
+            this.FilterRoom.getItems().add(r.getName());
+        }
     } 
     
     public void makeSchedule(){
