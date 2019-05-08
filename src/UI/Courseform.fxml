@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="UI.CourseformController">
+<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CourseformController">
    <children>
-      <Label fx:id="ID" layoutX="38.0" layoutY="66.0" prefHeight="42.0" prefWidth="125.0" text="ID">
+      <Label fx:id="ID" layoutX="38.0" layoutY="66.0" prefHeight="42.0" prefWidth="125.0" text="ID" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -27,9 +26,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="T1" editable="false" layoutX="260.0" layoutY="75.0" prefHeight="25.0" prefWidth="204.0" />
-      <TextField fx:id="T2" layoutX="257.0" layoutY="124.0" prefHeight="25.0" prefWidth="210.0" />
-      <TextField fx:id="T3" layoutX="257.0" layoutY="161.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="t1" layoutX="257.0" layoutY="161.0" prefHeight="25.0" prefWidth="210.0" />
+      <TextField fx:id="t2" layoutX="257.0" layoutY="124.0" prefHeight="25.0" prefWidth="210.0" />
       <TitledPane animated="false" layoutX="22.0" layoutY="209.0" prefHeight="304.0" prefWidth="556.0" text="Session">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="554.0">
@@ -49,7 +47,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button fx:id="B1" layoutX="408.0" layoutY="223.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" text="ADD Session">
+                  <Button fx:id="B1" layoutX="408.0" layoutY="223.0" mnemonicParsing="false" onAction="#ADD_session" prefHeight="35.0" prefWidth="133.0" text="ADD Session">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -73,10 +71,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </TitledPane>
-      <Button fx:id="B2" layoutX="424.0" layoutY="521.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="143.0" text="ADD Course">
+      <Button fx:id="B2" layoutX="424.0" layoutY="521.0" mnemonicParsing="false" onAction="#Add_course" prefHeight="42.0" prefWidth="143.0" text="ADD Course">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <TextField fx:id="t3" layoutX="257.0" layoutY="66.0" prefHeight="25.0" prefWidth="210.0" />
    </children>
 </AnchorPane>

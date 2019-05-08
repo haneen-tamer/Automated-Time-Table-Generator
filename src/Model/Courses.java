@@ -43,5 +43,12 @@ public class Courses implements Serializable{
     public String getName() {
         return name;
     }
-    
+    public void set_number_of_students(int num)
+    {
+        this.NoOfstudents=num;
+    }
+    public int get_number_of_student()
+    {
+        return NoOfstudents;
+    }
 }
