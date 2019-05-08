@@ -53,7 +53,13 @@ public class consoleTest {
         
         String [] daysArr = new String[days.size()];
         days.toArray(daysArr);
-        TimeTable t = ScheduleFactory.generateSchedule(daysArr, Start, end);
+        TimeTable t;
+        try{
+        t = ScheduleFactory.generateSchedule(daysArr, Start, end);
+        }catch(Exception e){
+            System.out.print("TimeTableConflict");
+            return;
+        }
         traverseTimeTable(t);
     }
     
