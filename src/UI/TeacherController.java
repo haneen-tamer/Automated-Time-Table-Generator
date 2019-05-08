@@ -16,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 import UseCases.*;
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javax.swing.JOptionPane;
 import javafx.scene.control.Alert.AlertType;
@@ -28,10 +27,11 @@ import javafx.scene.layout.AnchorPane;
  */
  
 public class TeacherController implements Initializable {
-
     
+   @FXML
+   private AnchorPane pane;
     @FXML
-   private TextField IDField; 
+   private Label IDField; 
     @FXML
    private TextField NameField;
     @FXML
@@ -40,22 +40,34 @@ public class TeacherController implements Initializable {
    private TextField PhoneField;
     @FXML
    private RadioButton ProfField;
+   
     @FXML
    private RadioButton TAfield;
     @FXML
    private Button buttonField;
-   @FXML
-    private AnchorPane pane;
+   
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        IDnum();
         
+    }   
+    class myException extends Exception{
+       public myException(){
+           super ();
+       }
+    }
+   
+    public void IDnum(){
         
-    }    
+     String I=""+TeacherFactory.getNextID();
+     IDField.setText(I);
+     
+}
     @FXML
     public void Button(){
-       
+     
       String Id=" ";
       String name =" ";
       String Email=" ";
@@ -63,160 +75,90 @@ public class TeacherController implements Initializable {
       String Prof=" ";
       String TA=" ";
       
+      
+      
       try{
       
       name= NameField.getText();
       Email= EmailField.getText();
       phone= PhoneField.getText();
-     
+      Prof=ProfField.getText();
+      TA=TAfield.getText();
       
        if(name.equals("")||phone.equals("")||Email.equals("")){
            throw new Exception();
        }
        
-       if(String.valueOf(PhoneField.getText()) instanceof String ){
-            throw new NumberFormatException();
-       }
-//           Teacher T;
-//       if(ProfField.isSelected()){
-//           T=TeacherFactory.makeProf(Id);
-//           T.setName(name);
-//           T.setE_Mail(Email);
-//           T.setPhone(phone);
-//       }
-//       else {
-//           T=TeacherFactory.makeTA(Id);
-//           T.setName(name);
-//           T.setE_Mail(Email);
-//           T.setPhone(phone);
-//       }
-//      }
-//      else
-//           throw new NumberFormatException();
        
-     }
-      
-    catch(NumberFormatException ex){
-          Alert a=new Alert(AlertType.ERROR);
+       
+       
+       if(Prof.equals("")&&TA.equals("")){
+           throw new myException();
+       }
+       int p=Integer.parseInt(phone);
+       
+      }
+
+       
+      catch(myException ea){
+          Alert a=new Alert(AlertType.WARNING);
            a.setTitle("Exception");
            a.setHeaderText("Failture");
-           a.setContentText("Sorry, You Have to Enter Numbers only  ");
+           a.setContentText("Sorry, You Have to Choose one Button! ");
            a.showAndWait();
-           NameField.clear();
-           PhoneField.clear();
-           EmailField.clear();
+
+           return;
+      }
+      
+    catch(NumberFormatException ex){
+          Alert a=new Alert(AlertType.WARNING);
+           a.setTitle("Exception");
+           a.setHeaderText("Failture");
+           a.setContentText("Sorry, You Have to Input Numbers only");
+           a.showAndWait();
+
+           
            return;
       }
       
        catch(Exception e){
-           Alert a=new Alert(AlertType.ERROR);
+           Alert a=new Alert(AlertType.WARNING);
            a.setTitle("Exception");
            a.setHeaderText("Failture");
-           a.setContentText("Sorry, You Have to Enter Data First! ");
+           a.setContentText("Sorry, You Have to fill all TextFields ");
            a.showAndWait();
+
+           return;
+        
+       }
+      if(ProfField.isSelected()){
+          Teacher T=TeacherFactory.makeProf(IDField.getText());
+          T.setName(name);
+          T.setPhone(phone);
+          T.setE_Mail(Email);
+          
+      }
+      else{
+          Teacher T=TeacherFactory.makeProf(IDField.getText());
+          T.setName(name);
+          T.setPhone(phone);
+          T.setE_Mail(Email);
+      }
+          IDnum();
+         
            NameField.clear();
            PhoneField.clear();
            EmailField.clear();
-           return;              
-       }
-      
-      
-//      NameField.clear();
-//      PhoneField.clear();
-//      EmailField.clear();
-      
-               
-   
-       /*Teacher T;
-       if(ProfField.isSelected()){
-           T=TeacherFactory.makeProf(Id);
-           T.setName(name);
-           T.setE_Mail(Email);
-           T.setPhone(phone);
-       }
-       else {
-           T=TeacherFactory.makeTA(Id);
-           T.setName(name);
-           T.setE_Mail(Email);
-           T.setPhone(phone);
-       }*/
-       
-} 
-    public void BackToHome() throws IOException
-    {
+           ProfField.setSelected(false);
+           TAfield.setSelected(false);
+
+}    
+   @FXML
+   public void BackToHome() throws IOException
+    {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
-        FileManager_controller.SaveTeachers(TeacherFactory.getAllTeachers());
     }
-
        
-//       int phone=Integer.parseInt(PhoneField.getText());
-//      
-//       try{
-//           if(ProfField.isSelected()){
-//             Teacher T= TeacherFactory.makeProf(IDField.getText());
-//             T.setName(NameField);
-//             T.setE_Mail(EmailField);
-//            }
-//            
-//            else{
-//                
-//              Teacher T=TeacherFactory.makeTA(IDField.getText());
-//            }
-//           if(NameField.getText().equals(" ")||PhoneField.getText().equals(" ")||EmailField.getText().equals(" ")){
-//               throw new Exception();
-//           }
-//            
-//        }
-//       catch(Exception e){
-//           
-//              Alert a=new Alert(AlertType.WARNING);
-//              a.setTitle("Exception");
-//              a.setHeaderText("Failture");
-//              a.setContentText("Sorry, You Have to Enter Data First! ");
-//              a.showAndWait();
-//           return ;
-//           
-//       }
-//       
-//       try{
-//           if(!ProfField.isSelected() && !TAfield.isSelected()){
-//            throw new Exception();
-//             
-//           }
-//       }
-//       catch(Exception e){
-//           Alert a=new Alert(AlertType.WARNING);
-//              a.setTitle("Exception");
-//              a.setHeaderText("Failture");
-//              a.setContentText("Sorry, You Have to choose one Button ! ");
-//              a.showAndWait();
-//              return;
-//       }
-//       
-//       try {
-//        Integer.parseInt(PhoneField.getText());
-//            
-//       }
-//       catch (Exception e ){
-//               Alert a=new Alert(AlertType.ERROR);
-//               a.setTitle("Error  ");
-//               a.setHeaderText("Failture");
-//               a.setContentText("Sorry, You Have to Add Digits only ! ");
-//               a.showAndWait();
-//               PhoneField.setText(" ");
-//               return;
-//           }
-//       
-//       
-////       NameField.setText(" ");
-////       PhoneField.setText(" ");
-////       EmailField.setText(" ");
-//       
-//      
-//        
-//    }
 
-
- 
 }

@@ -6,8 +6,11 @@
 package UI;
 
 import Model.Room;
+<<<<<<< HEAD
 import Model.Section;
 import Model.Session;
+=======
+>>>>>>> 1c4ce6f52fe2de7c3ffc43001218ab3fe3b4275c
 import Model.Teacher;
 import Model.TimeTable;
 import UseCases.RoomFactory;
@@ -15,12 +18,14 @@ import UseCases.RoomOverlapException;
 import UseCases.ScheduleFactory;
 import UseCases.TeacherFactory;
 import UseCases.TeacherOverlapException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Alert;
@@ -30,6 +35,7 @@ import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -41,6 +47,8 @@ import javafx.scene.layout.Pane;
  */
 public class TimeTableSceneController implements Initializable {
 
+    @FXML
+    private AnchorPane pane;
     @FXML
     private TextField startTxtBox;
     @FXML
@@ -55,6 +63,17 @@ public class TimeTableSceneController implements Initializable {
     public HashSet<String> checkedDays;
     private ArrayList<CheckBox> daysCheckBoxes;
     private TimeTable generatedTimeTable;
+    
+    //Filter
+    @FXML
+    private Pane filter;
+    @FXML
+    private ChoiceBox FilterRoom;
+    @FXML
+    private ChoiceBox FilterTeacher;
+    @FXML
+    private ChoiceBox FilterCourse;
+    
     /**
      * Initializes the controller class.
      */
@@ -72,6 +91,16 @@ public class TimeTableSceneController implements Initializable {
         }
         
         daysScrollPane.setContent(daysPane);
+        
+        //filterTeacher
+         for( Teacher t:TeacherFactory.getAllTeachers()){
+            this.FilterTeacher.getItems().add(t.getName()+"\t"+"("+t.getID()+")");
+        }
+         
+         //RoomTeacher
+         for(Room r:RoomFactory.get_AllRooms()){
+            this.FilterRoom.getItems().add(r.getName());
+        }
     } 
     
     public void makeSchedule(){
@@ -177,6 +206,10 @@ public class TimeTableSceneController implements Initializable {
         
         //show filter pane here
     }
-    
-    
+
+    public void BackToHome() throws IOException
+    {     
+        AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
+        pane.getChildren().setAll(home);
+    }
 }
