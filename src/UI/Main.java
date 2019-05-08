@@ -30,7 +30,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().addAll(this.getClass().getResource("home.css").toExternalForm());
 
-        primaryStage.setTitle("Automated Time Tabel");
+        primaryStage.setTitle("Automated Time Table");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

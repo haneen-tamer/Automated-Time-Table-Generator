@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CriteriaCourse implements Criteria {
 
-    public TimeTable meetsCriteria(Courses c ,TimeTable old) {
+    public static TimeTable meetsCriteria(Courses c ,TimeTable old) {
       
       ArrayList<Session> co = c.GetSessions();
 
