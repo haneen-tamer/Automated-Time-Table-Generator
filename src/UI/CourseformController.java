@@ -46,6 +46,10 @@ public class CourseformController implements Initializable {
     @FXML
      public Label Type;
     @FXML
+    public Label Duration;
+    @FXML
+    public TextField t4;
+    @FXML
    public TextField t3;
     @FXML
    public TextField t1;
@@ -68,11 +72,12 @@ public class CourseformController implements Initializable {
    ArrayList<String>s2;
    private String id;
    Session s;
-   Courses c;
-    @FXML
-    private Label No_;
-    @FXML
-    private ComboBox<?> C1;
+   Courses c=new Courses();
+   int number_of_Students=0;
+   String Course_name="";
+   int Duration_=0;
+   String Teacher_="";
+   String Room_="";
     /**
      * Initializes the controller class.
      */
@@ -83,65 +88,80 @@ public class CourseformController implements Initializable {
         t3.setText(id);
         t3.setDisable(false);
         get_teachers();
-        //c1.setItems((ObservableList<String>) s);
+        c1.setItems((ObservableList<String>) s);
         get_rooms();
-        //C2.setItems((ObservableList<String>)s2);
+        C2.setItems((ObservableList<String>)s2);
+        
     }   
     @FXML
     public void ADD_session(ActionEvent e) throws Exception
     {
         Teacher teacher;
         Room room;
-        //c1.getValue()==null
-        //C2.getValue()==null
+        
         try
-        {   
-        if(t2.getText().equals(" ")||t1.getText().equals(" "))
+        {
+            
+        number_of_Students=Integer.valueOf(t1.getText());
+        Course_name=t2.getText();
+        Duration_=Integer.valueOf(Duration.getText());
+        Teacher_=c1.getValue();
+        Room_=C2.getValue();
+        if(Course_name.equals("")||Teacher.equals("")||Room_.equals("")||number_of_Students==0||(R1.isSelected()==false&&R2.isSelected()==false)||Duration_==0)
         {
             
             throw new Exception();
             
         }
-        //else if(String.valueOf(t2.getText())instanceof String)
-        //{
-            //throw new NumberFormatException ();
-        //}
-        
-                
         if(R1.isSelected()==true)
         {
             s=new Lecture();
-            s.setCourseTitle(t2.getText());
-            teacher=get_Teacher(a,c1.getValue());
+            s.setCourseTitle(Course_name);
+            s.setDuration(Duration_);
+            teacher=get_Teacher(a,Teacher_);
             s.setTeacher(teacher);
-            room=get_Room(r,C2.getValue());
+            room=get_Room(r,Room_);
             s.setRoom(room);
         }
         else if(R2.isSelected()==true)
         {
             s=new Section();
-            s.setCourseTitle(t2.getText());
-            teacher=get_Teacher(a,c1.getValue());
+            s.setCourseTitle(Course_name);
+            s.setDuration(Duration_);
+            teacher=get_Teacher(a,Teacher_);
             s.setTeacher(teacher);
-            room=get_Room(r,C2.getValue());
+            room=get_Room(r,Room_);
             s.setRoom(room);
             
         }
         
-        c.setName(t2.getText());
+        c.setName(Course_name);
         c.AddSession(s);
-        int n=Integer.parseInt(t1.getText());
-        c.set_number_of_students(n);
+        c.set_number_of_students(number_of_Students);
         }
-        catch(Exception ee)
+    
+       catch(NumberFormatException ne)
         {
-         JOptionPane.showMessageDialog(null,"You must enter All Required Data ","Warning",JOptionPane.WARNING_MESSAGE);
-         //c1.getSelectionModel().clearSelection();
-         //C2.getSelectionModel().clearSelection();
+        JOptionPane.showMessageDialog(null,"You must enter number","Warning",JOptionPane.WARNING_MESSAGE);
+         c1.getSelectionModel().clearSelection();
+         C2.getSelectionModel().clearSelection();
          R1.setSelected(false);
          R2.setSelected(false);
          t2.clear();
          t1.clear();
+         t4.clear();
+         return;
+        }
+        catch(Exception ee)
+        {
+         JOptionPane.showMessageDialog(null,"You must enter All Required Data ","Warning",JOptionPane.WARNING_MESSAGE);
+         c1.getSelectionModel().clearSelection();
+         C2.getSelectionModel().clearSelection();
+         R1.setSelected(false);
+         R2.setSelected(false);
+         t2.clear();
+         t1.clear();
+         t4.clear();
          return;
         }
     }
@@ -149,7 +169,7 @@ public class CourseformController implements Initializable {
      public void Add_course(ActionEvent ee)
     {
         CourseFactory.addCourse(c);
-         JOptionPane.showMessageDialog(null," succsseful added ","Succsseful",JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(null," succsseful added ","Succsseful",JOptionPane.OK_OPTION);
     }
     public void get_teachers()
     {
