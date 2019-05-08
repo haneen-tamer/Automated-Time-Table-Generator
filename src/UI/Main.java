@@ -26,6 +26,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         root.setId("AnchorPane");
+
         Scene scene = new Scene(root);
         scene.getStylesheets().addAll(this.getClass().getResource("home.css").toExternalForm());
 
