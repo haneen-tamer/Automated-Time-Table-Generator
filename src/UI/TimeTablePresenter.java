@@ -38,7 +38,7 @@ public class TimeTablePresenter extends GridPane {
         RoomRowIndx = new HashMap<>();
         this.schedule = t;
         this.setStyle("-fx-border-color: black;");
-        Duration = this.schedule.getEndTime() - this.schedule.getStartTime()+1;
+        Duration = this.schedule.getEndTime() - this.schedule.getStartTime();
         insertDays();
         addTimeSlots();
         for(Courses c: CourseFactory.getAllCourses()){
