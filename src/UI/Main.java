@@ -24,11 +24,11 @@ public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
-
+        Parent root = FXMLLoader.load(getClass().getResource("TimeTableScene.fxml"));
+        
         Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Automated Time Table");
+        primaryStage.setTitle("Automated Time Tabel");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -38,6 +38,7 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
     }
     
 }

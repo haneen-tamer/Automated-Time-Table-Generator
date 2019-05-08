@@ -14,7 +14,6 @@ import java.util.*;
 public class consoleTest {
     public static void main(String [] args) throws Exception{
         //if files are empty
-        
         Scanner input = new Scanner(System.in);
         if(true){
             ReadRooms(input);
@@ -34,11 +33,12 @@ public class consoleTest {
             else printFilereadingStatus(" not ");
             
             ScheduleDialog(input);
-        }
         
     }
-    
-    public static void ScheduleDialog(Scanner input){
+        
+    }
+    public static void ScheduleDialog(Scanner input)
+    {
         ArrayList<String> days = new ArrayList<>(7);
         System.out.println("Enter the Days you want :");
         String d = input.next();
@@ -53,7 +53,13 @@ public class consoleTest {
         
         String [] daysArr = new String[days.size()];
         days.toArray(daysArr);
-        TimeTable t = ScheduleFactory.generateSchedule(daysArr, Start, end);
+        TimeTable t;
+        try{
+        t = ScheduleFactory.generateSchedule(daysArr, Start, end);
+        }catch(Exception e){
+            System.out.print("TimeTableConflict");
+            return;
+        }
         traverseTimeTable(t);
     }
     
@@ -181,7 +187,7 @@ public class consoleTest {
             
             
         }
-        
+    
     }
     
     public static void displaySession(Session s){

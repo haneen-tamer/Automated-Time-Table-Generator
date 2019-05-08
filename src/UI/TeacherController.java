@@ -24,7 +24,7 @@ import javafx.scene.control.Alert.AlertType;
  * @author Aya
  */
  
-public class TeacherController1 implements Initializable {
+public class TeacherController implements Initializable {
 
     @FXML
    private Label IDField; 

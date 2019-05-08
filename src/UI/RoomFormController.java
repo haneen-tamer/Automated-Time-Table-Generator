@@ -17,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
+import UseCases.FileManager_controller;
 
 /**
  * FXML Controller class
@@ -41,18 +42,6 @@ public class RoomFormController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {              
     }    
     
- /*   private static boolean NumberOrNot(String text) {
-         try
-        {
-            Integer.parseInt(text);
-        }
-        catch(NumberFormatException ex)
-        {
-            return false;
-        }
-        return true;    
-     }
-     */
     @FXML
     public void check()
     {
@@ -110,28 +99,12 @@ public class RoomFormController implements Initializable {
            return;
        }
     }
-    /*   if(RoomName.getText().equals("") || Capacity.getText().equals(""))
-         {
-          Alert alert = new Alert(AlertType.WARNING);
-          alert.setTitle("Exception");
-          alert.setHeaderText(null);
-          alert.setContentText("You have to fill the TextField..");
-          alert.showAndWait();
-         }
-       
-         if(!lecture.isSelected() && !lab.isSelected())
-         {
-          Alert alert = new Alert(AlertType.WARNING);
-          alert.setTitle("Exception");
-          alert.setHeaderText(null);
-          alert.setContentText("You have to choose one of Room's type..");
-          alert.showAndWait();
-         }
-     */  
-         
+   
     public void BackToHome() throws IOException
     {
+        
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
+        FileManager_controller.SaveRooms(RoomFactory.get_AllRooms());
     }
 }
