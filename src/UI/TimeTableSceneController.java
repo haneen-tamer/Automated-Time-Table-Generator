@@ -5,7 +5,10 @@
  */
 package UI;
 
+import Model.Courses;
 import Model.Room;
+import UseCases.*;
+import Model.Session;
 import Model.Teacher;
 import Model.TimeTable;
 import UseCases.RoomFactory;
@@ -17,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +29,7 @@ import javafx.geometry.Orientation;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -72,7 +77,7 @@ public class TimeTableSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        filter.setVisible(false);
         checkedDays = new HashSet<>();
         daysCheckBoxes = new ArrayList<>();
         daysPane = new FlowPane();
@@ -128,18 +133,61 @@ public class TimeTableSceneController implements Initializable {
             }
             generatedTimeTable = ScheduleFactory.generateSchedule(
                     arr, start, end);
+            
 
         }catch(RoomOverlapException re){
             String message = "Session "+ re.getSession().getCourseTitle()
                     + " can not fit in room "+re.getSession().getRoom().getName();
-            Alert alert = new Alert(Alert.AlertType.WARNING, message);
-            alert.show();
+            ArrayList<String> arr = getChoiceBoxFillByRooms();
+            String first = re.getSession().getRoom().getName();
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(first, arr);
+            dialog.setTitle("Overlap found");
+            dialog.setHeaderText(message);
+            dialog.setContentText("Choose a Room:");
+
+            // Traditional way to get the response value.
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()){
+                String t = result.get();
+                String ID = t.substring(t.indexOf('('), t.indexOf(')'));
+                if(!re.getSession().setTeacher(TeacherFactory.getTeacher(ID))){
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "This teacher is incompatible with this session!");
+                    alert.show();
+                    return;
+                }
+                System.out.println("Your choice: " + result.get());
+            }
+//            Alert alert = new Alert(Alert.AlertType.WARNING, message);
+//            alert.show();
             return;
         }catch(TeacherOverlapException te){
+            
             String message = "Teacher "+te.getSession().getTeacher().getName()+
                     " is not available to teach session "+ te.getSession().getCourseTitle();
-            Alert alert = new Alert(Alert.AlertType.WARNING, message);
-            alert.show();
+            ArrayList<String> arr = fillChoiceBoxByTeachers();
+            
+            String first = te.getSession().getTeacher().getName()
+                    +"\t"+"("+te.getSession().getTeacher().getID()+")";
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(first, arr);
+            dialog.setTitle("Overlap found");
+            dialog.setHeaderText(message);
+            dialog.setContentText("Choose a teacher:");
+
+            // Traditional way to get the response value.
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()){
+                String t = result.get();
+                String ID = t.substring(t.indexOf('(')+1, t.indexOf(')')-1);
+                if(!te.getSession().setTeacher(TeacherFactory.getTeacher(ID))){
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "This teacher is incompatible with this session!");
+                    alert.show();
+                    return;
+                }
+                System.out.println("Your choice: " + result.get());
+            }
+            
+//            Alert alert = new Alert(Alert.AlertType.WARNING, message);
+//            alert.show();
             return;
         }catch(Exception e){
             e.printStackTrace();
@@ -148,7 +196,68 @@ public class TimeTableSceneController implements Initializable {
         
         TimeTablePresenter t = new TimeTablePresenter(generatedTimeTable);
         TimeTableScrollPane.setContent(t);
+        
+        //show filter pane here
+        TimeTableData = filter;
+        TimeTableData.setVisible(true);
+        FilterCourse.getItems().addAll(fillChoiceBoxByCourses());
+        FilterTeacher.getItems().addAll(fillChoiceBoxByTeachers());
+        FilterRoom.getItems().addAll(getChoiceBoxFillByRooms());
     }
+    
+    private ArrayList<String> getChoiceBoxFillByRooms(){
+        ArrayList<String> arr = new ArrayList<>();
+            for(Room r:RoomFactory.get_AllRooms()){
+                arr.add(r.getName());
+            }
+        return arr;
+    }
+    
+    private ArrayList<String> fillChoiceBoxByTeachers(){
+        ArrayList<String> arr = new ArrayList<>();
+        for( Teacher t:TeacherFactory.getAllTeachers()){
+            arr.add(t.getName()+"\t"+"("+t.getID()+")");
+        }
+        return arr;
+    }
+    
+    private ArrayList<String> fillChoiceBoxByCourses(){
+        ArrayList<String> arr = new ArrayList<>();
+        for( Courses c:CourseFactory.getAllCourses()){
+            arr.add(c.getName()+"\t"+"("+c.getId()+")");
+        }
+        return arr;
+    }
+    
+    public void filterByRoom(){
+        Room r = RoomFactory.get_Room((String)FilterRoom.getValue());
+        TimeTable filtered = UseCases.FilterRoom.meetsCriteria(generatedTimeTable, r);
+        setTimeTableGrid(filtered);
+    }
+    public void filterByTeacher(){
+        String choice =(String) FilterTeacher.getValue();
+        String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
+        Teacher t = TeacherFactory.getTeacher(ID);
+        TimeTable filtered = CriteriaTeacher
+                .meetsCriteria(CourseFactory.getAllCourses(),
+                        t,
+                        generatedTimeTable);
+        setTimeTableGrid(filtered);
+    }
+    public void filterByCourse(){
+        String choice =(String) FilterCourse.getValue();
+        String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
+        Courses c = CourseFactory.getCourse(ID);
+        TimeTable filtered = CriteriaCourse
+                .meetsCriteria(c, generatedTimeTable);
+        setTimeTableGrid(filtered);
+    }
+    
+    private void setTimeTableGrid(TimeTable tt){
+        TimeTablePresenter t = new TimeTablePresenter(tt);
+        TimeTableScrollPane.setContent(t);
+    }
+
     public void BackToHome() throws IOException
     {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
