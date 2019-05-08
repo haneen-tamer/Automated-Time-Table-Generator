@@ -38,16 +38,14 @@ public class TimeTable {
     }
     
     public int getStartTime(){
-        ArrayList<ScheduleDay> arr= (ArrayList) week.values();
-        for(ScheduleDay d: arr){
+        for(ScheduleDay d: week.values()){
             return d.getStartTime();
         }
         return 0;
     }
     
     public int getEndTime(){
-        ArrayList<ScheduleDay> arr= (ArrayList) week.values();
-        for(ScheduleDay d: arr){
+        for(ScheduleDay d: week.values()){
             return d.getEndTime();
         }
         return 0;

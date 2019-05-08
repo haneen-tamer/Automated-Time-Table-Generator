@@ -11,12 +11,14 @@ import Model.*;
  * @author Haneen
  */
 public class ScheduleFactory {
-    public static TimeTable generateSchedule(String [] days, int start, int end){
+    public static TimeTable generateSchedule(String [] days, int start, int end) throws RoomOverlapException, TeacherOverlapException{
         TimeTable schedule = new TimeTable(days, RoomFactory.get_AllRooms(), start, end);
         ArrayList<Courses> courses = CourseFactory.getAllCourses();
         for(Courses c: courses){
             for(Session s: c.GetSessions()){
-                schedule.addSession(s);
+                int state = schedule.addSession(s);
+                if(state == ScheduleDay.ROOM_OVERLAP)throw new RoomOverlapException(s);
+                if(state == ScheduleDay.TEACHER_OVERLAP)throw new TeacherOverlapException(s);
             }
         }
         return schedule;

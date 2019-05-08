@@ -38,7 +38,7 @@ public class TimeTablePresenter extends GridPane {
         RoomRowIndx = new HashMap<>();
         this.schedule = t;
         this.setStyle("-fx-border-color: black;");
-        Duration = this.schedule.getEndTime() - this.schedule.getStartTime()+1;
+        Duration = this.schedule.getEndTime() - this.schedule.getStartTime();
         insertDays();
         addTimeSlots();
         for(Courses c: CourseFactory.getAllCourses()){
@@ -75,24 +75,21 @@ public class TimeTablePresenter extends GridPane {
     }
     
     private void insertDays(){
-        RowConstraints rowFirst = new RowConstraints(
-                    GridPane.USE_PREF_SIZE,
-                40*RoomFactory.get_AllRooms().size(),
-                GridPane.USE_PREF_SIZE);
-        this.getRowConstraints().add(rowFirst);
+        int prefSize = 40;//*RoomFactory.get_AllRooms().size();
         int i=1;
         for(Day d : Day.values()){
             RowConstraints row = new RowConstraints(
                     GridPane.USE_PREF_SIZE,
-                40*RoomFactory.get_AllRooms().size(),
-                GridPane.USE_PREF_SIZE);
+                    prefSize,
+                    GridPane.USE_PREF_SIZE);
             this.getRowConstraints().add(row);
             Label l = new Label(d.name());
             l.setStyle("-fx-padding: 0,0,0,0; -fx-border-color: black");
             l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            this.addRow(i, l);
+            this.add(l,0,i);
             i++;
         }
+        System.out.println("#of rows: "+this.getRowConstraints().size());
     }
     
     private void insertRooms(GridPane gp){
@@ -115,6 +112,11 @@ public class TimeTablePresenter extends GridPane {
     }
     
     public void addTimeSlots(){
+        RowConstraints rowFirst = new RowConstraints(
+                    GridPane.USE_PREF_SIZE,
+                40,
+                GridPane.USE_PREF_SIZE);
+        this.getRowConstraints().add(rowFirst);
         int StartTime = this.schedule.getStartTime();
         for(int i=0; i<Duration; i++){
             Label l;
