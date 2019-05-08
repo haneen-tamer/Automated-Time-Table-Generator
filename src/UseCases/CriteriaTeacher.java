@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class CriteriaTeacher implements Criteria {
     
     
-   public TimeTable meetsCriteria(ArrayList<Courses> course,Teacher T,TimeTable old  ){
+   public static TimeTable meetsCriteria(ArrayList<Courses> course,Teacher T,TimeTable old  ){
           TimeTable S=new TimeTable(old.getDaysStrings(),RoomFactory.get_AllRooms(),old.getStartTime(),old.getEndTime());
          
           
