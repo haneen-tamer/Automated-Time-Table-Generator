@@ -10,26 +10,42 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="498.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="772.0" prefWidth="976.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
    <children>
-      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="36.0" prefWidth="51.0" text="Home" textAlignment="CENTER">
+      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="36.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
          <effect>
             <DropShadow height="38.79" radius="17.3525" width="32.62" />
          </effect>
+         <font>
+            <Font size="19.0" />
+         </font>
       </Button>
-      <Pane fx:id="TimeTableData" layoutX="54.0" layoutY="25.0" prefHeight="123.0" prefWidth="571.0">
+      <Pane fx:id="TimeTableData" layoutX="43.0" layoutY="101.0" prefHeight="170.0" prefWidth="571.0">
          <children>
-            <Label layoutX="22.0" layoutY="14.0" text="Days" />
-            <ScrollPane fx:id="daysScrollPane" layoutX="14.0" layoutY="31.0" prefHeight="68.0" prefWidth="179.0" />
-            <TextField fx:id="startTxtBox" layoutX="456.0" layoutY="14.0" prefHeight="25.0" prefWidth="67.0" />
-            <TextField fx:id="endTextBox" layoutX="456.0" layoutY="57.0" prefHeight="25.0" prefWidth="67.0" />
-            <Label layoutX="380.0" layoutY="18.0" prefHeight="17.0" prefWidth="67.0" text="Start Time" />
-            <Button layoutX="390.0" layoutY="87.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="36.0" prefWidth="133.0" text="Generate Schedule" />
-            <Label layoutX="380.0" layoutY="57.0" prefHeight="17.0" prefWidth="67.0" text="End Time" />
+            <Label layoutX="22.0" layoutY="14.0" text="Days">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Label>
+            <ScrollPane fx:id="daysScrollPane" layoutX="14.0" layoutY="51.0" prefHeight="94.0" prefWidth="179.0" />
+            <TextField fx:id="startTxtBox" layoutX="435.0" layoutY="27.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="endTextBox" layoutX="435.0" layoutY="64.0" prefHeight="25.0" prefWidth="80.0" />
+            <Label layoutX="303.0" layoutY="24.0" prefHeight="30.0" prefWidth="104.0" text="Start Time">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Button layoutX="372.0" layoutY="120.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="39.0" prefWidth="188.0" text="Generate Schedule">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Label layoutX="304.0" layoutY="61.0" prefHeight="30.0" prefWidth="110.0" text="End Time">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
          </children>
       </Pane>
-      <ScrollPane fx:id="TimeTableScrollPane" layoutX="13.0" layoutY="157.0" prefHeight="334.0" prefWidth="593.0">
+      <ScrollPane fx:id="TimeTableScrollPane" layoutY="272.0" prefHeight="540.0" prefWidth="700.0">
          <content>
             <Pane prefHeight="123.0" prefWidth="571.0">
                <children>

@@ -29,11 +29,11 @@
       <TextField fx:id="Capacity" layoutX="275.0" layoutY="574.0" prefHeight="26.0" prefWidth="167.0" />
       <RadioButton fx:id="lecture" layoutX="72.0" layoutY="682.0" mnemonicParsing="false" text="LectureHall">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font></RadioButton>
       <RadioButton fx:id="lab" layoutX="374.0" layoutY="682.0" mnemonicParsing="false" text="Lab" textAlignment="CENTER">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font></RadioButton>
       <Button layoutX="342.0" layoutY="755.0" mnemonicParsing="false" onAction="#check" prefHeight="68.0" prefWidth="184.0" text="Add Room">
          <font>

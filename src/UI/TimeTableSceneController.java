@@ -77,7 +77,7 @@ public class TimeTableSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        filter.setVisible(false);
+      //  filter.setVisible(false);
         checkedDays = new HashSet<>();
         daysCheckBoxes = new ArrayList<>();
         daysPane = new FlowPane();
