@@ -146,6 +146,7 @@ public class TeacherController implements Initializable {
     {
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
+        FileManager_controller.SaveTeachers(TeacherFactory.getAllTeachers());
     }
 
        
