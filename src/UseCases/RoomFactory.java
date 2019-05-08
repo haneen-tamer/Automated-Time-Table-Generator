@@ -20,13 +20,13 @@ public class RoomFactory {
    /*.............................................*/
    public static boolean isUniqueName(String n)
    {
-       if(map.containsValue(n)==true)
+       if(map.containsKey(n)==true)
        {
-           return true;
+           return false;
        }
        else
        {
-           return false;
+           return true;
        }
    }
    public static Room Make_Class(String Name,int capicty)

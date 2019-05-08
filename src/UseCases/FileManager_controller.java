@@ -10,6 +10,7 @@ import Model.Room;
 import Model.Teacher;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -84,6 +85,8 @@ public class FileManager_controller {
         
         /*.........................................*/
         try{
+            File f = new File(Teachers_File);
+        if(f.length()==0)return true;
         ArrayList<Teacher> At=new ArrayList<Teacher>();
         FileInputStream fis=new FileInputStream(Teachers_File);
         BufferedInputStream bis=new BufferedInputStream(fis);
@@ -108,6 +111,8 @@ public class FileManager_controller {
         
         /*.........................................*/
         try{
+            File f = new File(Courses_File);
+            if(f.length()==0)return true;
         ArrayList<Courses> Ac=new ArrayList<Courses>();
         FileInputStream fis=new FileInputStream(Courses_File);
         BufferedInputStream bis=new BufferedInputStream(fis);
@@ -134,6 +139,9 @@ public class FileManager_controller {
         /*.........................................*/
         try{
         ArrayList<Room> Ar;
+        File f = new File(Rooms_File);
+        if(f.length()==0)return true;
+        
         FileInputStream fis=new FileInputStream(Rooms_File);
         BufferedInputStream bis=new BufferedInputStream(fis);
         ObjectInputStream is=new ObjectInputStream(bis);

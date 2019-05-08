@@ -14,8 +14,7 @@ import java.util.*;
 public class consoleTest {
     public static void main(String [] args) throws Exception{
         //if files are empty
-        
-        /*Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         if(true){
             ReadRooms(input);
             ReadTeachers(input);
@@ -33,14 +32,13 @@ public class consoleTest {
                     printFilereadingStatus("");
             else printFilereadingStatus(" not ");
             
-            ScheduleDialog(input);*/
-        String id=CourseFactory.getNextID();
-        System.out.println(id);
-        }
+            ScheduleDialog(input);
         
     }
-    
-   /* public static void ScheduleDialog(Scanner input){
+        
+    }
+    public static void ScheduleDialog(Scanner input)
+    {
         ArrayList<String> days = new ArrayList<>(7);
         System.out.println("Enter the Days you want :");
         String d = input.next();
@@ -183,7 +181,7 @@ public class consoleTest {
             
             
         }
-        
+    
     }
     
     public static void displaySession(Session s){
@@ -206,4 +204,4 @@ public class consoleTest {
             
         });
     }
-}*/
+}
