@@ -6,11 +6,8 @@
 package UI;
 
 import Model.Room;
-<<<<<<< HEAD
-import Model.Section;
+
 import Model.Session;
-=======
->>>>>>> 1c4ce6f52fe2de7c3ffc43001218ab3fe3b4275c
 import Model.Teacher;
 import Model.TimeTable;
 import UseCases.RoomFactory;
