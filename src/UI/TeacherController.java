@@ -117,9 +117,7 @@ public class TeacherController implements Initializable {
            NameField.clear();
            PhoneField.clear();
            EmailField.clear();
-           return;
-         
-           
+           return;              
        }
       
       
@@ -127,8 +125,7 @@ public class TeacherController implements Initializable {
 //      PhoneField.clear();
 //      EmailField.clear();
       
-          
-     
+               
    
        /*Teacher T;
        if(ProfField.isSelected()){
