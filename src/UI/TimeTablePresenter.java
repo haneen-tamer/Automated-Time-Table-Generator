@@ -41,8 +41,11 @@ public class TimeTablePresenter extends GridPane {
         Duration = this.schedule.getEndTime() - this.schedule.getStartTime();
         insertDays();
         addTimeSlots();
+        System.out.println(CourseFactory.getAllCourses().size());
         for(Courses c: CourseFactory.getAllCourses()){
+             System.out.println(c.getName());
             for(Session s: c.GetSessions()){
+          
                 insertSession(s);
             }
         }
@@ -75,7 +78,7 @@ public class TimeTablePresenter extends GridPane {
     }
     
     private void insertDays(){
-        int prefSize = 40;//*RoomFactory.get_AllRooms().size();
+        int prefSize = 40*RoomFactory.get_AllRooms().size();
         int i=1;
         for(Day d : Day.values()){
             RowConstraints row = new RowConstraints(
@@ -96,7 +99,7 @@ public class TimeTablePresenter extends GridPane {
         int i=1;
         for(Room r: RoomFactory.get_AllRooms()){
             RowConstraints row = new RowConstraints(
-                    GridPane.USE_PREF_SIZE,80,GridPane.USE_PREF_SIZE);
+                    GridPane.USE_PREF_SIZE,20,GridPane.USE_PREF_SIZE);
             gp.getRowConstraints().add(row);
             Label l = new Label(r.getName());
             l.setStyle("-fx-padding: 0,0,0,0; -fx-border-color: black");

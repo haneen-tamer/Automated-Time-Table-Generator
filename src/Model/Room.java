@@ -27,5 +27,8 @@ public abstract class Room implements Serializable{
 
     public abstract int getCapacity();
 
-    
+    @Override
+   public int hashCode(){
+       return name.hashCode();
+   }
 }

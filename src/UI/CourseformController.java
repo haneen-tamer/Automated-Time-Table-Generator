@@ -130,13 +130,14 @@ public class CourseformController implements Initializable {
             
         number_of_Students=Integer.valueOf(t1.getText());
         Course_name=t2.getText();
-        Duration_=Integer.valueOf(Duration.getText());
+        Duration_=Integer.valueOf(t4.getText());
         String choice =(String) c1.getValue();
-        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')'));
         teacher  = TeacherFactory.getTeacher(ID);
         room = RoomFactory.get_Room((String)C2.getValue());
-        
-        if(Course_name.equals("")||Teacher.equals("")||Room_.equals("")||number_of_Students==0||(R1.isSelected()==false&&R2.isSelected()==false)||Duration_==0)
+        System.out.println(ID);
+        System.out.println(room.getCapacity());
+        if(Course_name.equals("")||number_of_Students==0||(R1.isSelected()==false&&R2.isSelected()==false)||Duration_==0)
         {
             
             throw new Exception();
@@ -147,9 +148,9 @@ public class CourseformController implements Initializable {
             s=new Lecture();
             s.setCourseTitle(Course_name);
             s.setDuration(Duration_);
-         // teacher=get_Teacher(a,Teacher_);
+          //teacher=get_Teacher(a,Teacher_);
             s.setTeacher(teacher);
-           // room=get_Room(r,Room_);
+           //room=get_Room(r,Room_);
             s.setRoom(room);
         }
         else if(R2.isSelected()==true)
@@ -173,7 +174,9 @@ public class CourseformController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.WARNING,
                     "You must enter number!");
+            ne.printStackTrace();
                     alert.show();
+                    
 //        JOptionPane.showMessageDialog(null,"You must enter number","Warning",JOptionPane.WARNING_MESSAGE);
          
          return;
@@ -182,6 +185,7 @@ public class CourseformController implements Initializable {
         {
             Alert alert = new Alert(Alert.AlertType.WARNING,
                     "You must enter All Required Data !");
+            ee.printStackTrace();
                     alert.show();
 //         JOptionPane.showMessageDialog(null,"You must enter All Required Data ","Warning",JOptionPane.WARNING_MESSAGE);
          

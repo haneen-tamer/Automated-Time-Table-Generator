@@ -53,15 +53,16 @@ public class ScheduleDay {
     }
     
     public ScheduleDay(String name, ArrayList<Room> Rooms, int start, int end){
+        this.name=name;
         mapPerDay = new HashMap<>(Rooms.size());
         this.startTime=start;
         this.endTime=end;
-        Iterator it = Rooms.iterator();
-        while(it.hasNext()){
-            mapPerDay.put((Room)it.next(),
+        for(Room r :Rooms){
+            mapPerDay.put(r,
                     new PriorityQueue<>(end-start, new ScheduleDay.SessionComparator()));
         }
-    }
+        System.out.println(mapPerDay.values().size());
+        }
     
     //returns start time of gap of s.getDuration() length
     //or 0 if none suitable
@@ -78,16 +79,24 @@ public class ScheduleDay {
     }
     
     public int addSession(Session s){
+        System.out.println(s.getRoom().getName());
         PriorityQueue<Session> room_sch = mapPerDay.get(s.getRoom()) ;
+        if(room_sch==null){
+            room_sch=new PriorityQueue<>(this.endTime -this.startTime, new ScheduleDay.SessionComparator());
+        }
         if (!room_sch.isEmpty()){
             boolean canFit = false;
             Iterator it = room_sch.iterator();
             ArrayList<Integer> startTimes = getSuitableStartTimes(it, s);
             if(startTimes.isEmpty()) return ScheduleDay.ROOM_OVERLAP;
+            
             for (Integer startTime1 : startTimes) {
+               
                 int start = startTime1;
                 if(s.getTeacher().addTimePair(this.name, start, start+ s.getDuration())){
                     s.setStartTime(start);
+                    System.out.println("Starttime"+ s.getStartTime());
+                    s.setDay(name);
                     room_sch.add(s);
                     canFit = true;
                     break;
@@ -95,12 +104,16 @@ public class ScheduleDay {
             }
             if(canFit) return ScheduleDay.NO_OVERLAP;
             else return ScheduleDay.TEACHER_OVERLAP;
-        }else{
+        }
+
+         else{
             s.setStartTime(this.startTime);
+            System.out.println("Starttime"+ s.getStartTime());
             if(!s.getTeacher()
                 .addTimePair(this.name, ScheduleDay.START_TIME, s.getEndTime())) 
                 return ScheduleDay.TEACHER_OVERLAP;
             room_sch.add(s);
+            s.setDay(name);
             return ScheduleDay.NO_OVERLAP;
         }
         

@@ -202,8 +202,8 @@ public class TimeTableSceneController implements Initializable {
         TimeTableScrollPane.setContent(t);
         
         //show filter pane here
-        TimeTableData = filter;
-        TimeTableData.setVisible(true);
+       // TimeTableData = filter;
+        //TimeTableData.setVisible(true);
         FilterCourse.getItems().addAll(fillChoiceBoxByCourses());
         FilterTeacher.getItems().addAll(fillChoiceBoxByTeachers());
         FilterRoom.getItems().addAll(getChoiceBoxFillByRooms());
