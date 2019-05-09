@@ -37,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  * FXML Controller class
@@ -63,6 +64,7 @@ public class TimeTableSceneController implements Initializable {
     private TimeTable generatedTimeTable;
     
     //Filter
+    @FXML
     private Pane filter;
     @FXML
     private ChoiceBox FilterRoom;
@@ -71,14 +73,21 @@ public class TimeTableSceneController implements Initializable {
     @FXML
     private ChoiceBox FilterCourse;
     
+    @FXML
+    private StackPane stackPane;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-      //  filter.setVisible(false);
-
+        if(this.stackPane.getChildren().size()>1){
+           this.filter.setVisible(false);
+           this.filter.toBack();
+           TimeTableData.setVisible(true);
+           //TimeTableData.toFront();
+       }
         
 
         checkedDays = new HashSet<>();
@@ -93,15 +102,7 @@ public class TimeTableSceneController implements Initializable {
         
         daysScrollPane.setContent(daysPane);
         
-        //filterTeacher
-         for( Teacher t:TeacherFactory.getAllTeachers()){
-            this.FilterTeacher.getItems().add(t.getName()+"\t"+"("+t.getID()+")");
-        }
-         
-         //RoomTeacher
-         for(Room r:RoomFactory.get_AllRooms()){
-            this.FilterRoom.getItems().add(r.getName());
-        }
+        
     } 
     
     @FXML
@@ -152,10 +153,9 @@ public class TimeTableSceneController implements Initializable {
             // Traditional way to get the response value.
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
-                String t = result.get();
-                String ID = t.substring(t.indexOf('('), t.indexOf(')'));
-                if(!re.getSession().setTeacher(TeacherFactory.getTeacher(ID))){
-                    Alert alert = new Alert(Alert.AlertType.WARNING, "This teacher is incompatible with this session!");
+                String t = (String) result.get();
+                if(!re.getSession().setRoom(RoomFactory.get_Room(t))){
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "This room is incompatible with this session!");
                     alert.show();
                     return;
                 }
@@ -181,7 +181,7 @@ public class TimeTableSceneController implements Initializable {
             Optional<String> result = dialog.showAndWait();
             if (result.isPresent()){
                 String t = result.get();
-                String ID = t.substring(t.indexOf('(')+1, t.indexOf(')')-1);
+                String ID = t.substring(t.indexOf('(')+1, t.indexOf(')'));
                 if(!te.getSession().setTeacher(TeacherFactory.getTeacher(ID))){
                     Alert alert = new Alert(Alert.AlertType.WARNING, "This teacher is incompatible with this session!");
                     alert.show();
@@ -202,8 +202,11 @@ public class TimeTableSceneController implements Initializable {
         TimeTableScrollPane.setContent(t);
         
         //show filter pane here
-       // TimeTableData = filter;
-        //TimeTableData.setVisible(true);
+       if(this.stackPane.getChildren().size()>1){
+           this.TimeTableData.setVisible(false);
+           this.TimeTableData.toBack();
+           filter.setVisible(true);
+       }
         FilterCourse.getItems().addAll(fillChoiceBoxByCourses());
         FilterTeacher.getItems().addAll(fillChoiceBoxByTeachers());
         FilterRoom.getItems().addAll(getChoiceBoxFillByRooms());
@@ -242,7 +245,7 @@ public class TimeTableSceneController implements Initializable {
     @FXML
     public void filterByTeacher(){
         String choice =(String) FilterTeacher.getValue();
-        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')'));
         Teacher t = TeacherFactory.getTeacher(ID);
         TimeTable filtered = CriteriaTeacher
                 .meetsCriteria(CourseFactory.getAllCourses(),
@@ -253,7 +256,7 @@ public class TimeTableSceneController implements Initializable {
     @FXML
     public void filterByCourse(){
         String choice =(String) FilterCourse.getValue();
-        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')'));
         Courses c = CourseFactory.getCourse(ID);
         TimeTable filtered = CriteriaCourse
                 .meetsCriteria(c, generatedTimeTable);
@@ -270,5 +273,7 @@ public class TimeTableSceneController implements Initializable {
     {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
+        FileManager_controller.SaveCourses(CourseFactory.getAllCourses());
+        
     }
 }

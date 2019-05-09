@@ -139,7 +139,7 @@ public class TeacherController implements Initializable {
           
       }
       else{
-          Teacher T=TeacherFactory.makeProf(IDField.getText());
+          Teacher T=TeacherFactory.makeTA(IDField.getText());
           T.setName(name);
           T.setPhone(phone);
           T.setE_Mail(Email);

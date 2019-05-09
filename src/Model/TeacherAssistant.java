@@ -11,8 +11,8 @@ package Model;
  */
 public class TeacherAssistant extends Teacher {
     
-    public void setname(String x){
-        this.Name=" TA "+x;
+    public void setName(String x){
+        this.Name="TA "+x;
     }
     
 }

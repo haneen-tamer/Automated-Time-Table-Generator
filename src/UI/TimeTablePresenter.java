@@ -42,10 +42,9 @@ public class TimeTablePresenter extends GridPane {
         insertDays();
         addTimeSlots();
         System.out.println(CourseFactory.getAllCourses().size());
-        for(Courses c: CourseFactory.getAllCourses()){
-             System.out.println(c.getName());
-            for(Session s: c.GetSessions()){
-          
+        for(Room r: RoomFactory.get_AllRooms()){
+            for(Session s: t.getRoomSchedule(r)){
+                System.out.println(s.getCourseTitle());
                 insertSession(s);
             }
         }
@@ -78,7 +77,7 @@ public class TimeTablePresenter extends GridPane {
     }
     
     private void insertDays(){
-        int prefSize = 40*RoomFactory.get_AllRooms().size();
+        int prefSize = 25*RoomFactory.get_AllRooms().size();
         int i=1;
         for(Day d : Day.values()){
             RowConstraints row = new RowConstraints(
@@ -96,7 +95,7 @@ public class TimeTablePresenter extends GridPane {
     }
     
     private void insertRooms(GridPane gp){
-        int i=1;
+        int i=0;
         for(Room r: RoomFactory.get_AllRooms()){
             RowConstraints row = new RowConstraints(
                     GridPane.USE_PREF_SIZE,20,GridPane.USE_PREF_SIZE);
@@ -104,8 +103,11 @@ public class TimeTablePresenter extends GridPane {
             Label l = new Label(r.getName());
             l.setStyle("-fx-padding: 0,0,0,0; -fx-border-color: black");
             l.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            gp.addRow(i, l);
+            gp.add(l, 0, i);
             this.RoomRowIndx.put(r.getName(), i);
+            i++;
+//            gp.addRow(i, l);
+//            this.RoomRowIndx.put(r.getName(), i);
         }
             
     }
@@ -117,9 +119,18 @@ public class TimeTablePresenter extends GridPane {
     public void addTimeSlots(){
         RowConstraints rowFirst = new RowConstraints(
                     GridPane.USE_PREF_SIZE,
-                40,
+                25,
                 GridPane.USE_PREF_SIZE);
         this.getRowConstraints().add(rowFirst);
+        Label l1= new Label("Days");
+            l1.setStyle("-fx-padding: 0,0,0,0; -fx-border-color: black");
+            l1.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            this.add(l1, 0, 0);
+            Label l2= new Label("Rooms");
+            l2.setStyle("-fx-padding: 0,0,0,0; -fx-border-color: black");
+            l2.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            this.add(l2, 1, 0);
+        
         int StartTime = this.schedule.getStartTime();
         for(int i=0; i<Duration; i++){
             Label l;

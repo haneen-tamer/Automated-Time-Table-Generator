@@ -96,9 +96,9 @@ public class CourseformController implements Initializable {
         c = new Courses();
         c.setId(id);
         
-        get_teachers();
+        //get_teachers();
         c1.getItems().addAll(fillChoiceBoxByTeachers());
-        get_rooms();
+        //get_rooms();
         C2.getItems().addAll(getChoiceBoxFillByRooms());
         
     }   
@@ -135,8 +135,8 @@ public class CourseformController implements Initializable {
         String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')'));
         teacher  = TeacherFactory.getTeacher(ID);
         room = RoomFactory.get_Room((String)C2.getValue());
-        System.out.println(ID);
-        System.out.println(room.getCapacity());
+ //       System.out.println(ID);
+//        System.out.println(room.getCapacity());
         if(Course_name.equals("")||number_of_Students==0||(R1.isSelected()==false&&R2.isSelected()==false)||Duration_==0)
         {
             
@@ -195,8 +195,7 @@ public class CourseformController implements Initializable {
          C2.getSelectionModel().clearSelection();
          R1.setSelected(false);
          R2.setSelected(false);
-         t2.clear();
-         t1.clear();
+         
          t4.clear();
          
     }
@@ -208,6 +207,8 @@ public class CourseformController implements Initializable {
         id=CourseFactory.getNextID();
         t3.setText(id);
         c.setId(id);
+        t2.clear();
+         t1.clear();
         //JOptionPane.showMessageDialog(null," succsseful added ","Succsseful",JOptionPane.OK_OPTION);
     }
     public void get_teachers()

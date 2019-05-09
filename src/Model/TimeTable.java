@@ -52,7 +52,13 @@ public class TimeTable {
     }
     
     public String [] getDaysStrings(){
-        return (String []) week.entrySet().toArray();
+        String [] arr = new String[week.entrySet().size()];
+        int i=0;
+        for(String s :week.keySet()){
+            arr[i] = s;
+            i++;
+        }
+        return arr;
     }
     public ArrayList<Session> getRoomSchedule(Room r){
         ArrayList<Session> arr = new ArrayList<>();

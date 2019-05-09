@@ -27,7 +27,7 @@ public class CriteriaTeacher implements Criteria {
             
           for(Session s: c.GetSessions())
               
-               if(T==s.getTeacher()){
+               if(s.getTeacher().getID().equals(T.getID())){
                    
                    session.add(s);
                }

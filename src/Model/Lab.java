@@ -12,7 +12,7 @@ package Model;
 public class Lab extends Room {
     
     public void setName(String name) {
-        this.name = name;
+        this.name = "Lab "+name;
     }
     
     public void setCapacity(int capacity) {

@@ -34,7 +34,7 @@ public class ScheduleDay {
     public static final int TEACHER_OVERLAP=1;
     public static final int NO_OVERLAP=0;
     
-    private HashMap<Room, PriorityQueue<Session>> mapPerDay;
+    private HashMap<String, PriorityQueue<Session>> mapPerDay;
     private String name;
     private int startTime;
     private int endTime;
@@ -58,7 +58,7 @@ public class ScheduleDay {
         this.startTime=start;
         this.endTime=end;
         for(Room r :Rooms){
-            mapPerDay.put(r,
+            mapPerDay.put(r.getName(),
                     new PriorityQueue<>(end-start, new ScheduleDay.SessionComparator()));
         }
         System.out.println(mapPerDay.values().size());
@@ -72,30 +72,50 @@ public class ScheduleDay {
         while(it.hasNext()){
             Session after = (Session) it.next();
             int gap = after.getStartTime()-before.getEndTime();
-            if(gap>0 && gap<this.endTime) possibleTimes.add(gap);
+            if(gap>0 && before.getEndTime()<this.endTime 
+                    && gap<=toInsert.getDuration()) {
+                for(int i=before.getEndTime(); i<=after.getStartTime(); i++)
+                    possibleTimes.add(i);
+            }
+                
             before = after;
         }
         return possibleTimes;
     }
     
     public int addSession(Session s){
-        System.out.println(s.getRoom().getName());
-        PriorityQueue<Session> room_sch = mapPerDay.get(s.getRoom()) ;
-        if(room_sch==null){
-            room_sch=new PriorityQueue<>(this.endTime -this.startTime, new ScheduleDay.SessionComparator());
-        }
-        if (!room_sch.isEmpty()){
+        //System.out.println(s.getRoom().getName());
+        PriorityQueue<Session> room_sch = mapPerDay.get(s.getRoom().getName()) ;
+        System.out.println(s.getRoom().getName()+" capacity :"+room_sch.size());
+//        if(room_sch==null){
+//            room_sch=new PriorityQueue<>(this.endTime -this.startTime, new ScheduleDay.SessionComparator());
+//        }
+        if (room_sch.size()!=0){
             boolean canFit = false;
+            System.out.println("room not empty");
             Iterator it = room_sch.iterator();
             ArrayList<Integer> startTimes = getSuitableStartTimes(it, s);
-            if(startTimes.isEmpty()) return ScheduleDay.ROOM_OVERLAP;
             
+            if(startTimes.isEmpty()){
+                System.out.println("Previous sess: "
+                        +room_sch.peek().getCourseTitle()+" ends at "
+                        +room_sch.peek().getEndTime());
+                for(int i=room_sch.peek().getEndTime(); i< this.endTime;i++){
+                    if(i+s.getDuration()<=this.endTime)
+                        startTimes.add(i);
+                   else break;
+                }
+                    
+                if(startTimes.isEmpty())return ScheduleDay.ROOM_OVERLAP;
+            }
+
             for (Integer startTime1 : startTimes) {
-               
+               System.out.println("gaps: "+startTime1);
                 int start = startTime1;
                 if(s.getTeacher().addTimePair(this.name, start, start+ s.getDuration())){
                     s.setStartTime(start);
-                    System.out.println("Starttime"+ s.getStartTime());
+                    System.out.println("Starttime of "+s.getCourseTitle()+" is "
+                            + s.getStartTime());
                     s.setDay(name);
                     room_sch.add(s);
                     canFit = true;
@@ -108,7 +128,7 @@ public class ScheduleDay {
 
          else{
             s.setStartTime(this.startTime);
-            System.out.println("Starttime"+ s.getStartTime());
+            //System.out.println("Starttime of "+s.getCourseTitle()+" is "+ s.getStartTime());
             if(!s.getTeacher()
                 .addTimePair(this.name, ScheduleDay.START_TIME, s.getEndTime())) 
                 return ScheduleDay.TEACHER_OVERLAP;
@@ -120,7 +140,7 @@ public class ScheduleDay {
     }
   
     public void insertSessionAt(Session s){
-        PriorityQueue<Session> room_sch = mapPerDay.get(s.getRoom()) ;
+        PriorityQueue<Session> room_sch = mapPerDay.get(s.getRoom().getName()) ;
         room_sch.add(s);
     }
     
@@ -132,7 +152,7 @@ public class ScheduleDay {
     }
     public ArrayList<Session> getRoomSchedule(Room r){
         ArrayList<Session> arr = new ArrayList<>();
-        Iterator it = mapPerDay.get(r).iterator();
+        Iterator it = mapPerDay.get(r.getName()).iterator();
         while(it.hasNext()){
             arr.add((Session)it.next());
         }
