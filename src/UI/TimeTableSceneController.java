@@ -238,7 +238,7 @@ public class TimeTableSceneController implements Initializable {
     @FXML
     public void filterByTeacher(){
         String choice =(String) FilterTeacher.getValue();
-        String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
         Teacher t = TeacherFactory.getTeacher(ID);
         TimeTable filtered = CriteriaTeacher
                 .meetsCriteria(CourseFactory.getAllCourses(),
@@ -249,7 +249,7 @@ public class TimeTableSceneController implements Initializable {
     @FXML
     public void filterByCourse(){
         String choice =(String) FilterCourse.getValue();
-        String ID = choice.substring(choice.indexOf('('), choice.indexOf(')'));
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
         Courses c = CourseFactory.getCourse(ID);
         TimeTable filtered = CriteriaCourse
                 .meetsCriteria(c, generatedTimeTable);

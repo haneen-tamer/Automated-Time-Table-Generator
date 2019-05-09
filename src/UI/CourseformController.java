@@ -72,7 +72,7 @@ public class CourseformController implements Initializable {
    ArrayList<String>s2;
    private String id;
    Session s;
-   Courses c=new Courses();
+   Courses c;
    int number_of_Students=0;
    String Course_name="";
    int Duration_=0;
@@ -87,12 +87,32 @@ public class CourseformController implements Initializable {
         id=CourseFactory.getNextID();
         t3.setText(id);
         t3.setDisable(false);
+        c = new Courses();
+        c.setId(id);
+        
         get_teachers();
-        c1.setItems((ObservableList<String>) s);
+        c1.getItems().addAll(fillChoiceBoxByTeachers());
         get_rooms();
-        C2.setItems((ObservableList<String>)s2);
+        C2.getItems().addAll(getChoiceBoxFillByRooms());
         
     }   
+    
+    
+    private ArrayList<String> getChoiceBoxFillByRooms(){
+        ArrayList<String> arr = new ArrayList<>();
+            for(Room r:RoomFactory.get_AllRooms()){
+                arr.add(r.getName());
+            }
+        return arr;
+    }
+    
+    private ArrayList<String> fillChoiceBoxByTeachers(){
+        ArrayList<String> arr = new ArrayList<>();
+        for( Teacher t:TeacherFactory.getAllTeachers()){
+            arr.add(t.getName()+"\t"+"("+t.getID()+")");
+        }
+        return arr;
+    }
     @FXML
     public void ADD_session(ActionEvent e) throws Exception
     {
@@ -142,34 +162,40 @@ public class CourseformController implements Initializable {
     
        catch(NumberFormatException ne)
         {
-        JOptionPane.showMessageDialog(null,"You must enter number","Warning",JOptionPane.WARNING_MESSAGE);
-         c1.getSelectionModel().clearSelection();
-         C2.getSelectionModel().clearSelection();
-         R1.setSelected(false);
-         R2.setSelected(false);
-         t2.clear();
-         t1.clear();
-         t4.clear();
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "You must enter number!");
+                    alert.show();
+//        JOptionPane.showMessageDialog(null,"You must enter number","Warning",JOptionPane.WARNING_MESSAGE);
+         
          return;
         }
         catch(Exception ee)
         {
-         JOptionPane.showMessageDialog(null,"You must enter All Required Data ","Warning",JOptionPane.WARNING_MESSAGE);
-         c1.getSelectionModel().clearSelection();
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    "You must enter All Required Data !");
+                    alert.show();
+//         JOptionPane.showMessageDialog(null,"You must enter All Required Data ","Warning",JOptionPane.WARNING_MESSAGE);
+         
+         return;
+        }
+        c1.getSelectionModel().clearSelection();
          C2.getSelectionModel().clearSelection();
          R1.setSelected(false);
          R2.setSelected(false);
          t2.clear();
          t1.clear();
          t4.clear();
-         return;
-        }
+         
     }
     @FXML
      public void Add_course(ActionEvent ee)
     {
         CourseFactory.addCourse(c);
-        JOptionPane.showMessageDialog(null," succsseful added ","Succsseful",JOptionPane.OK_OPTION);
+        c = new Courses();
+        id=CourseFactory.getNextID();
+        t3.setText(id);
+        c.setId(id);
+        //JOptionPane.showMessageDialog(null," succsseful added ","Succsseful",JOptionPane.OK_OPTION);
     }
     public void get_teachers()
     {
