@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="772.0" prefWidth="976.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="866.0" prefWidth="976.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
    <children>
       <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="36.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
          <effect>
@@ -22,30 +22,30 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <Pane fx:id="TimeTableData" layoutX="43.0" layoutY="101.0" prefHeight="170.0" prefWidth="571.0">
+      <Pane fx:id="TimeTableData" layoutX="44.0" layoutY="105.0" prefHeight="218.0" prefWidth="788.0">
          <children>
-            <Label layoutX="22.0" layoutY="14.0" text="Days">
+            <Label layoutX="14.0" text="Days">
                <font>
-                  <Font name="System Bold" size="23.0" />
+                  <Font name="System Bold" size="32.0" />
                </font></Label>
-            <ScrollPane fx:id="daysScrollPane" layoutX="14.0" layoutY="51.0" prefHeight="94.0" prefWidth="179.0" />
-            <TextField fx:id="startTxtBox" layoutX="435.0" layoutY="27.0" prefHeight="25.0" prefWidth="80.0" />
-            <TextField fx:id="endTextBox" layoutX="435.0" layoutY="64.0" prefHeight="25.0" prefWidth="80.0" />
-            <Label layoutX="303.0" layoutY="24.0" prefHeight="30.0" prefWidth="104.0" text="Start Time">
+            <ScrollPane fx:id="daysScrollPane" layoutX="14.0" layoutY="51.0" prefHeight="131.0" prefWidth="186.0" />
+            <TextField fx:id="startTxtBox" layoutX="477.0" layoutY="59.0" prefHeight="25.0" prefWidth="80.0" />
+            <TextField fx:id="endTextBox" layoutX="477.0" layoutY="96.0" prefHeight="25.0" prefWidth="80.0" />
+            <Label layoutX="310.0" layoutY="53.0" prefHeight="38.0" prefWidth="137.0" text="Start Time">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="24.0" />
                </font></Label>
-            <Button layoutX="372.0" layoutY="120.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="39.0" prefWidth="188.0" text="Generate Schedule">
+            <Button layoutX="301.0" layoutY="154.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="56.0" prefWidth="268.0" text="Generate Schedule">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="26.0" />
                </font></Button>
-            <Label layoutX="304.0" layoutY="61.0" prefHeight="30.0" prefWidth="110.0" text="End Time">
+            <Label layoutX="310.0" layoutY="94.0" prefHeight="30.0" prefWidth="110.0" text="End Time">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="24.0" />
                </font></Label>
          </children>
       </Pane>
-      <ScrollPane fx:id="TimeTableScrollPane" layoutY="272.0" prefHeight="540.0" prefWidth="700.0">
+      <ScrollPane fx:id="TimeTableScrollPane" layoutY="324.0" prefHeight="536.0" prefWidth="700.0">
          <content>
             <Pane prefHeight="123.0" prefWidth="571.0">
                <children>
@@ -53,7 +53,7 @@
                     <tabs>
                       <Tab text="Filter By Room">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="94.0" prefWidth="440.0">
                                  <children>
                                     <ChoiceBox fx:id="FilterRoom" layoutX="101.0" layoutY="18.0" prefWidth="150.0" />
                                     <Button layoutX="293.0" layoutY="18.0" mnemonicParsing="false" onAction="#filterByRoom" text="Filter" />

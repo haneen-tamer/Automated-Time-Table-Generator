@@ -6,40 +6,41 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="608.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CourseformController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="837.0" prefWidth="1015.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CourseformController">
    <children>
-      <Label fx:id="ID" layoutX="36.0" layoutY="63.0" prefHeight="56.0" prefWidth="114.0" text="ID">
+      <Label fx:id="ID" layoutX="25.0" layoutY="64.0" prefHeight="56.0" prefWidth="114.0" text="ID">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label fx:id="No_" layoutX="36.0" layoutY="152.0" prefHeight="42.0" prefWidth="173.0" text="Number of Students">
+      <Label fx:id="No_" layoutX="22.0" layoutY="208.0" prefHeight="47.0" prefWidth="315.0" text="Number of Students">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <TextField fx:id="t1" layoutX="257.0" layoutY="161.0" prefHeight="25.0" prefWidth="210.0" />
-      <TextField fx:id="t2" layoutX="257.0" layoutY="124.0" prefHeight="25.0" prefWidth="210.0" />
-      <TitledPane animated="false" layoutX="22.0" layoutY="191.0" prefHeight="350.0" prefWidth="556.0" text="Session">
+      <TextField fx:id="t1" layoutX="359.0" layoutY="218.0" prefHeight="26.0" prefWidth="156.0" />
+      <TextField fx:id="t2" layoutX="272.0" layoutY="140.0" prefHeight="26.0" prefWidth="174.0" />
+      <TitledPane animated="false" layoutX="22.0" layoutY="337.0" prefHeight="350.0" prefWidth="556.0" text="Session">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="235.0" prefWidth="554.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="554.0">
                <children>
                   <Label fx:id="Teacher" layoutX="22.0" layoutY="40.0" prefHeight="56.0" prefWidth="96.0" text="Teacher">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
                   </Label>
                   <Label fx:id="Room" layoutX="22.0" layoutY="104.0" prefHeight="42.0" prefWidth="96.0" text="Room">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
                   <Label fx:id="Type" layoutX="22.0" layoutY="166.0" prefHeight="42.0" prefWidth="96.0" text="Type">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
                   <Button fx:id="B1" layoutX="407.0" layoutY="261.0" mnemonicParsing="false" onAction="#ADD_session" prefHeight="35.0" prefWidth="133.0" text="ADD Session">
@@ -47,41 +48,49 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <RadioButton fx:id="R1" layoutX="136.0" layoutY="177.0" mnemonicParsing="false" text="Lecture">
+                  <RadioButton fx:id="R1" layoutX="210.0" layoutY="177.0" mnemonicParsing="false" text="Lecture">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="R2" layoutX="357.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Section">
+                  <RadioButton fx:id="R2" layoutX="390.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Section">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </RadioButton>
                   <ComboBox fx:id="C1" layoutX="219.0" layoutY="56.0" prefHeight="29.0" prefWidth="271.0" />
                   <ComboBox fx:id="C2" layoutX="219.0" layoutY="108.0" prefHeight="34.0" prefWidth="274.0" />
                   <Label fx:id="Duration" layoutX="22.0" layoutY="219.0" prefHeight="42.0" prefWidth="125.0" text="Duration" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="t4" layoutX="181.0" layoutY="219.0" prefHeight="29.0" prefWidth="310.0" />
+                  <TextField fx:id="t4" layoutX="222.0" layoutY="219.0" prefHeight="35.0" prefWidth="270.0" />
                </children>
             </AnchorPane>
         </content>
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </TitledPane>
-      <Button fx:id="B2" layoutX="424.0" layoutY="552.0" mnemonicParsing="false" onAction="#Add_course" prefHeight="42.0" prefWidth="143.0" text="ADD Course">
+      <Button fx:id="B2" layoutX="395.0" layoutY="748.0" mnemonicParsing="false" onAction="#Add_course" prefHeight="50.0" prefWidth="143.0" text="ADD Course">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="t3" layoutX="257.0" layoutY="66.0" prefHeight="25.0" prefWidth="210.0" />
-      <Label fx:id="Name" layoutX="36.0" layoutY="116.0" prefHeight="42.0" prefWidth="173.0" text="Course Name">
+      <TextField fx:id="t3" layoutX="121.0" layoutY="79.0" prefHeight="26.0" prefWidth="174.0" />
+      <Label fx:id="Name" layoutX="22.0" layoutY="128.0" prefHeight="50.0" prefWidth="222.0" text="Course Name">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
+      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="82.0" layoutY="749.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="50.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
+         <effect>
+            <DropShadow height="38.79" radius="17.3525" width="32.62" />
+         </effect>
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
