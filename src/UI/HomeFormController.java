@@ -47,21 +47,25 @@ public class HomeFormController implements Initializable {
        
     }    
     
+    @FXML
     public void MakeSchedule() throws IOException
     {
         AnchorPane schedule = FXMLLoader.load(getClass().getResource("TimeTableScene.fxml"));
         pane.getChildren().setAll(schedule);
     }
+    @FXML
      public void AddTeacher() throws IOException
     {
         AnchorPane teacher = FXMLLoader.load(getClass().getResource("Teacher.fxml"));
         pane.getChildren().setAll(teacher);
     }
+    @FXML
       public void AddCourse() throws IOException
     {
         AnchorPane course = FXMLLoader.load(getClass().getResource("Courseform.fxml"));
         pane.getChildren().setAll(course);
     }
+    @FXML
     public void AddRoom() throws IOException
     {
        AnchorPane room = FXMLLoader.load(getClass().getResource("roomForm.fxml"));
