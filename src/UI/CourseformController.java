@@ -13,6 +13,7 @@ import Model.Session;
 import Model.Teacher;
 import UseCases.CourseFactory;
 import UseCases.RoomFactory;
+import UseCases.FileManager_controller;
 import UseCases.TeacherFactory;
 import java.io.IOException;
 import java.net.URL;
@@ -66,9 +67,9 @@ public class CourseformController implements Initializable {
    public RadioButton R1;
     @FXML
    public RadioButton R2;
-   public ComboBox<String>c1;
+   public ChoiceBox c1;
     @FXML
-   public ComboBox <String> C2;
+   public ChoiceBox  C2;
     @FXML
    private AnchorPane pane;
    ArrayList<Teacher>a;
@@ -130,8 +131,11 @@ public class CourseformController implements Initializable {
         number_of_Students=Integer.valueOf(t1.getText());
         Course_name=t2.getText();
         Duration_=Integer.valueOf(Duration.getText());
-        Teacher_=c1.getValue();
-        Room_=C2.getValue();
+        String choice =(String) c1.getValue();
+        String ID = choice.substring(choice.indexOf('(')+1, choice.indexOf(')')-1);
+        teacher  = TeacherFactory.getTeacher(ID);
+        room = RoomFactory.get_Room((String)C2.getValue());
+        
         if(Course_name.equals("")||Teacher.equals("")||Room_.equals("")||number_of_Students==0||(R1.isSelected()==false&&R2.isSelected()==false)||Duration_==0)
         {
             
@@ -143,9 +147,9 @@ public class CourseformController implements Initializable {
             s=new Lecture();
             s.setCourseTitle(Course_name);
             s.setDuration(Duration_);
-            teacher=get_Teacher(a,Teacher_);
+         // teacher=get_Teacher(a,Teacher_);
             s.setTeacher(teacher);
-            room=get_Room(r,Room_);
+           // room=get_Room(r,Room_);
             s.setRoom(room);
         }
         else if(R2.isSelected()==true)
@@ -153,9 +157,9 @@ public class CourseformController implements Initializable {
             s=new Section();
             s.setCourseTitle(Course_name);
             s.setDuration(Duration_);
-            teacher=get_Teacher(a,Teacher_);
+           // teacher=get_Teacher(a,Teacher_);
             s.setTeacher(teacher);
-            room=get_Room(r,Room_);
+           // room=get_Room(r,Room_);
             s.setRoom(room);
             
         }
@@ -250,6 +254,8 @@ public class CourseformController implements Initializable {
     {     
         AnchorPane home = FXMLLoader.load(getClass().getResource("HomeForm.fxml"));
         pane.getChildren().setAll(home);
+        FileManager_controller.SaveCourses(CourseFactory.getAllCourses());
+        
     }
     
 }
