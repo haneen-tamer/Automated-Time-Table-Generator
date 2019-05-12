@@ -10,86 +10,95 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="837.0" prefWidth="1015.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CourseformController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="600.0" prefWidth="850.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.CourseformController">
    <children>
-      <Label fx:id="ID" layoutX="25.0" layoutY="64.0" prefHeight="56.0" prefWidth="114.0" text="ID">
+      <Label fx:id="ID" layoutX="30.0" layoutY="36.0" prefHeight="56.0" prefWidth="114.0" text="ID">
          <font>
-            <Font name="System Bold" size="32.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <Label fx:id="No_" layoutX="22.0" layoutY="208.0" prefHeight="47.0" prefWidth="315.0" text="Number of Students">
+      <Label fx:id="No_" layoutX="27.0" layoutY="180.0" prefHeight="47.0" prefWidth="315.0" text="Number of Students">
          <font>
-            <Font name="System Bold" size="31.0" />
+            <Font size="26.0" />
          </font>
       </Label>
-      <TextField fx:id="t1" layoutX="359.0" layoutY="218.0" prefHeight="26.0" prefWidth="156.0" />
-      <TextField fx:id="t2" layoutX="272.0" layoutY="140.0" prefHeight="26.0" prefWidth="174.0" />
-      <TitledPane animated="false" layoutX="33.0" layoutY="373.0" prefHeight="350.0" prefWidth="556.0" text="Session">
+      <TextField fx:id="t1" layoutX="364.0" layoutY="190.0" prefHeight="26.0" prefWidth="156.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TextField fx:id="t2" layoutX="277.0" layoutY="112.0" prefHeight="26.0" prefWidth="174.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+      <TitledPane animated="false" layoutX="29.0" layoutY="245.0" prefHeight="276.0" prefWidth="497.0" text="Session">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="554.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="486.0">
                <children>
-                  <Label fx:id="Teacher" layoutX="22.0" layoutY="40.0" prefHeight="56.0" prefWidth="96.0" text="Teacher">
+                  <Label fx:id="Teacher" layoutX="14.0" layoutY="14.0" prefHeight="39.0" prefWidth="74.0" text="Teacher">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Room" layoutX="22.0" layoutY="104.0" prefHeight="42.0" prefWidth="96.0" text="Room">
+                  <Label fx:id="Room" layoutX="14.0" layoutY="59.0" prefHeight="42.0" prefWidth="96.0" text="Room">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Type" layoutX="22.0" layoutY="166.0" prefHeight="42.0" prefWidth="96.0" text="Type">
+                  <Label fx:id="Type" layoutX="14.0" layoutY="103.0" prefHeight="42.0" prefWidth="96.0" text="Type">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="B1" layoutX="407.0" layoutY="261.0" mnemonicParsing="false" onAction="#ADD_session" prefHeight="35.0" prefWidth="133.0" text="ADD Session">
+                  <Button fx:id="B1" layoutX="346.0" layoutY="187.0" mnemonicParsing="false" onAction="#ADD_session" prefHeight="35.0" prefWidth="133.0" text="ADD Session">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <RadioButton fx:id="R1" layoutX="210.0" layoutY="177.0" mnemonicParsing="false" text="Lecture">
+                  <RadioButton fx:id="R1" layoutX="202.0" layoutY="114.0" mnemonicParsing="false" text="Lecture">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="R2" layoutX="390.0" layoutY="174.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Section">
+                  <RadioButton fx:id="R2" layoutX="382.0" layoutY="111.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="101.0" text="Section">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </RadioButton>
-                  <Label fx:id="Duration" layoutX="22.0" layoutY="219.0" prefHeight="42.0" prefWidth="125.0" text="Duration" textAlignment="CENTER">
+                  <Label fx:id="Duration" layoutX="14.0" layoutY="145.0" prefHeight="42.0" prefWidth="125.0" text="Duration" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="23.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="t4" layoutX="222.0" layoutY="219.0" prefHeight="35.0" prefWidth="270.0" />
-                  <ChoiceBox fx:id="c1" layoutX="220.0" layoutY="55.0" prefHeight="35.0" prefWidth="267.0" />
-                  <ChoiceBox fx:id="C2" layoutX="220.0" layoutY="113.0" prefHeight="35.0" prefWidth="269.0" />
+                  <TextField fx:id="t4" layoutX="214.0" layoutY="145.0" prefHeight="35.0" prefWidth="270.0" />
+                  <ChoiceBox fx:id="c1" layoutX="213.0" layoutY="16.0" prefHeight="35.0" prefWidth="267.0" />
+                  <ChoiceBox fx:id="C2" layoutX="212.0" layoutY="68.0" prefHeight="35.0" prefWidth="269.0" />
                </children>
             </AnchorPane>
         </content>
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font size="18.0" />
          </font>
       </TitledPane>
-      <Button fx:id="B2" layoutX="395.0" layoutY="748.0" mnemonicParsing="false" onAction="#Add_course" prefHeight="50.0" prefWidth="143.0" text="ADD Course">
+      <Button fx:id="B2" layoutX="371.0" layoutY="537.0" mnemonicParsing="false" onAction="#Add_course" prefHeight="50.0" prefWidth="143.0" text="ADD Course">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="t3" layoutX="121.0" layoutY="79.0" prefHeight="26.0" prefWidth="174.0" />
-      <Label fx:id="Name" layoutX="22.0" layoutY="128.0" prefHeight="50.0" prefWidth="222.0" text="Course Name">
+      <TextField fx:id="t3" layoutX="126.0" layoutY="51.0" prefHeight="26.0" prefWidth="174.0">
          <font>
-            <Font name="System Bold" size="32.0" />
+            <Font size="18.0" />
+         </font></TextField>
+      <Label fx:id="Name" layoutX="27.0" layoutY="100.0" prefHeight="50.0" prefWidth="222.0" text="Course Name">
+         <font>
+            <Font size="26.0" />
          </font>
       </Label>
-      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="82.0" layoutY="749.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="50.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
+      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="58.0" layoutY="537.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="50.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
          <effect>
             <DropShadow height="38.79" radius="17.3525" width="32.62" />
          </effect>
          <font>
-            <Font size="19.0" />
+            <Font size="18.0" />
          </font>
       </Button>
    </children>

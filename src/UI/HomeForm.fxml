@@ -8,35 +8,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="888.0" prefWidth="1040.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.HomeFormController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="600.0" prefWidth="850.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.HomeFormController">
    <children>
-      <Label layoutX="135.0" layoutY="361.0" prefHeight="83.0" prefWidth="313.0" text="Welcome" textFill="#01161e">
+      <ImageView fitHeight="146.0" fitWidth="272.0" layoutX="41.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <PerspectiveTransform />
+         </effect></ImageView>
+      <Label layoutX="85.0" layoutY="232.0" prefHeight="78.0" prefWidth="211.0" text="Welcome" textFill="#01161e">
          <font>
-            <Font name="Century Schoolbook" size="72.0" />
+            <Font name="Century Schoolbook" size="48.0" />
          </font>
          <effect>
             <Reflection />
          </effect>
       </Label>
-      <ImageView fitHeight="202.0" fitWidth="381.0" layoutX="101.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
-         <effect>
-            <PerspectiveTransform />
-         </effect></ImageView>
-      <Button layoutX="322.0" layoutY="787.0" mnemonicParsing="false" onAction="#MakeSchedule" prefHeight="90.0" prefWidth="226.0" text="Make Schedule">
+      <Button layoutX="207.0" layoutY="535.0" mnemonicParsing="false" onAction="#MakeSchedule" prefHeight="52.0" prefWidth="153.0" text="Make Schedule">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Button layoutX="76.0" layoutY="764.0" mnemonicParsing="false" onAction="#AddCourse" prefHeight="68.0" prefWidth="182.0" text="Add Course">
+      <Button layoutX="41.0" layoutY="523.0" mnemonicParsing="false" onAction="#AddCourse" prefHeight="52.0" prefWidth="141.0" text="Add Course">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Button layoutX="69.0" layoutY="537.0" mnemonicParsing="false" onAction="#AddTeacher" prefHeight="68.0" prefWidth="182.0" text="Add Teacher">
+      <Button layoutX="41.0" layoutY="379.0" mnemonicParsing="false" onAction="#AddTeacher" prefHeight="52.0" prefWidth="141.0" text="Add Teacher">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
-      <Button layoutX="76.0" layoutY="648.0" mnemonicParsing="false" onAction="#AddRoom" prefHeight="68.0" prefWidth="182.0" text="Add Room">
+      <Button layoutX="41.0" layoutY="456.0" mnemonicParsing="false" onAction="#AddRoom" prefHeight="52.0" prefWidth="141.0" text="Add Room">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="18.0" />
          </font></Button>
    </children>
 </AnchorPane>

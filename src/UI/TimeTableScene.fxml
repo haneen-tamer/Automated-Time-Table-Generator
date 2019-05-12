@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="866.0" prefWidth="976.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="600.0" prefWidth="850.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.TimeTableSceneController">
    <children>
       <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="36.0" prefWidth="127.0" text="Main Form" textAlignment="CENTER">
          <effect>
@@ -23,8 +23,8 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <ScrollPane fx:id="TimeTableScrollPane" layoutX="14.0" layoutY="323.0" maxHeight="1.7976931348623157E308" prefHeight="536.0" prefWidth="955.0" />
-      <StackPane fx:id="stackPane" layoutX="64.0" layoutY="62.0" prefHeight="250.0" prefWidth="618.0">
+      <ScrollPane fx:id="TimeTableScrollPane" layoutX="17.0" layoutY="301.0" maxHeight="1.7976931348623157E308" prefHeight="278.0" prefWidth="824.0" />
+      <StackPane fx:id="stackPane" layoutX="64.0" layoutY="62.0" prefHeight="230.0" prefWidth="591.0">
          <children>
             <Pane fx:id="TimeTableData" prefHeight="218.0" prefWidth="788.0">
                <children>
@@ -41,9 +41,9 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button layoutX="301.0" layoutY="154.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="56.0" prefWidth="268.0" text="Generate Schedule">
+                  <Button layoutX="301.0" layoutY="154.0" mnemonicParsing="false" onAction="#makeSchedule" prefHeight="47.0" prefWidth="249.0" text="Generate Schedule">
                      <font>
-                        <Font name="System Bold" size="26.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
                   <Label layoutX="310.0" layoutY="94.0" prefHeight="30.0" prefWidth="110.0" text="End Time">
@@ -53,7 +53,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="filter" prefHeight="123.0" prefWidth="571.0">
+            <Pane fx:id="filter" prefHeight="222.0" prefWidth="596.0">
                <children>
                   <TabPane layoutX="126.0" prefHeight="123.0" prefWidth="389.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>

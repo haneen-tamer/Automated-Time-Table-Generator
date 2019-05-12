@@ -8,43 +8,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="789.0" prefWidth="918.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.RoomFormController">
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="600.0" prefWidth="850.0" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.RoomFormController">
    <children>
-      <Label layoutX="133.0" layoutY="367.0" prefHeight="55.0" prefWidth="400.0" text="Room Form">
+      <Label layoutX="55.0" layoutY="249.0" prefHeight="55.0" prefWidth="400.0" text="Room Form">
          <font>
-            <Font name="Arial Bold Italic" size="48.0" />
+            <Font name="Arial Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="51.0" layoutY="478.0" prefHeight="35.0" prefWidth="184.0" text="Room Name :">
+      <Label layoutX="36.0" layoutY="342.0" prefHeight="35.0" prefWidth="157.0" text="Room Name :">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="574.0" text="Capacity :">
+      <Label layoutX="42.0" layoutY="409.0" text="Capacity :">
          <font>
-            <Font name="Arial Bold" size="28.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="RoomName" layoutX="267.0" layoutY="482.0" prefHeight="26.0" prefWidth="167.0" />
-      <TextField fx:id="Capacity" layoutX="275.0" layoutY="574.0" prefHeight="26.0" prefWidth="167.0" />
-      <RadioButton fx:id="lecture" layoutX="72.0" layoutY="682.0" mnemonicParsing="false" text="LectureHall">
+      <TextField fx:id="RoomName" layoutX="179.0" layoutY="343.0" prefHeight="26.0" prefWidth="167.0">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font></TextField>
+      <TextField fx:id="Capacity" layoutX="187.0" layoutY="403.0" prefHeight="26.0" prefWidth="167.0">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
+         </font></TextField>
+      <RadioButton fx:id="lecture" layoutX="55.0" layoutY="483.0" mnemonicParsing="false" text="LectureHall">
+         <font>
+            <Font name="Arial Bold Italic" size="18.0" />
          </font></RadioButton>
-      <RadioButton fx:id="lab" layoutX="374.0" layoutY="682.0" mnemonicParsing="false" text="Lab" textAlignment="CENTER">
+      <RadioButton fx:id="lab" layoutX="238.0" layoutY="483.0" mnemonicParsing="false" text="Lab" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
          </font></RadioButton>
-      <Button layoutX="342.0" layoutY="755.0" mnemonicParsing="false" onAction="#check" prefHeight="68.0" prefWidth="184.0" text="Add Room">
+      <Button layoutX="224.0" layoutY="530.0" mnemonicParsing="false" onAction="#check" prefHeight="55.0" prefWidth="144.0" text="Add Room">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
          </font></Button>
-      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="98.0" layoutY="755.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="68.0" prefWidth="184.0" text="Main Form" textAlignment="CENTER">
+      <Button cache="true" cacheHint="SCALE" contentDisplay="CENTER" layoutX="42.0" layoutY="530.0" mnemonicParsing="false" onAction="#BackToHome" opacity="0.83" prefHeight="55.0" prefWidth="144.0" text="Main Form" textAlignment="CENTER">
          <effect>
             <DropShadow height="38.79" radius="17.3525" width="32.62" />
          </effect>
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="Arial Bold Italic" size="18.0" />
          </font>
       </Button>
    </children>
